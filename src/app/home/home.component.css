@@ -1,0 +1,10 @@
+.container {
+    position: absolute;
+    width: 1920px;
+    height: 1079px;
+    left: 270px;
+    top: 0;
+    background: #F1F7F1;
+    /* Cover shadow */
+    box-shadow: 0px 4px 40px rgba(150, 168, 150, 0.3);
+}

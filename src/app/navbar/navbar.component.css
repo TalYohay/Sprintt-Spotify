@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: Rubik;
+}
+
+.navbar {
+    position: absolute;
+    width: 270px;
+    height: 1080px;
+    left: -1px;
+    top: 0px;
+    background: linear-gradient(0deg, #FFFFFF, #FFFFFF);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+    position: absolute;
+    width: 109px;
+    height: 60px;
+    left: 26px;
+    top: -5px;
+    background: url(src\assets\logo.png);
+}
+
+ul {
+    list-style-type: none
+}
+
+a {
+    text-decoration: none;
+    color: #191414;
+}
+
+li a.home {
+    position: absolute;
+    width: 49px;
+    height: 21px;
+    left: 50px;
+    top: 138px;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 21px;
+    color: #191414;
+    display: flex;
+    padding-top: 15px;
+}
+
+li a.home span img {
+    width: 20.18px;
+    height: 21.6px;
+    left: 55px;
+    top: 136px;
+    margin-right: 10px;
+}
+
+li a.browse {
+    position: absolute;
+    left: 50px;
+    top: 196px;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 21px;
+    color: #191414;
+    display: flex;
+    padding-top: 15px;
+}
+
+li a.browse span img {
+    width: 22.4px;
+    height: 18.4px;
+    left: 55px;
+    top: 199px;
+    margin-right: 10px;
+}
+
+li a.likedsongs {
+    position: absolute;
+    left: 50px;
+    top: 259px;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 21px;
+    color: #191414;
+    display: flex;
+    white-space: nowrap;
+    padding-top: 15px;
+}
+
+li a.likedsongs span img {
+    width: 22.38px;
+    height: 22.4px;
+    left: 52px;
+    top: 266.78px;
+    transform: rotate(-45deg);
+    margin-right: 10px;
+}
+
+.active {
+    background: rgba(29, 185, 84, 0.15);
+    border-radius: 10px;
+    width: 210px !important;
+    height: 55px !important;
+    position: absolute !important;
+    left: 25px !important;
+    padding-left: 25px !important;
+    /* display: flex;
+    align-items: center; */
+}
