@@ -5,3 +5,40 @@
     margin: 0;
     font-family: Rubik;
 }
+
+.ngx-pagination .pagination-previous a::before,
+.ngx-pagination .pagination-previous.disabled::before {
+    position: absolute;
+    left: 1300px;
+    top: 143.81px;
+    content: "\2B9C" !important;
+    font-size: 24px;
+    /* color: yellow !important; */
+}
+
+.ngx-pagination .pagination-next a::after,
+.ngx-pagination .pagination-next.disabled::after {
+    position: absolute;
+    font-size: 24px;
+    left: 1340px;
+    top: 143.81px;
+    content: "\2B9E" !important;
+    /* color: brown !important; */
+}
+
+.ngx-pagination li:not(.pagination-previous):not(.pagination-next) {
+    display: none;
+    /* color: brown !important; */
+}
+
+.ngx-pagination .pagination-next a::after,
+.ngx-pagination .pagination-next.disabled::after {
+    /* color: brown !important; */
+}
+
+.ngx-pagination a:hover {
+    background: none !important;
+    text-decoration: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}

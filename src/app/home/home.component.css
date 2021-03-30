@@ -8,3 +8,77 @@
     /* Cover shadow */
     box-shadow: 0px 4px 40px rgba(150, 168, 150, 0.3);
 }
+
+.featuredPlaylists {
+    /* position: absolute; */
+    /* width: 207px; */
+    /* height: 33px; */
+    /* left: 91px; */
+    /* top: 120px; */
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 28px;
+    line-height: 33px;
+    color: #191414;
+    white-space: nowrap;
+}
+
+.small-container {
+    width: 1300px;
+    /* margin: auto; */
+    margin-left: 150px;
+    margin-top: 100px;
+}
+
+.playListRow {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.playListBox {
+    height: 400px;
+    width: 200px;
+}
+
+.playListImg img {
+    /* position: absolute; */
+    width: 215px;
+    height: 200px;
+    /* left: -7px;
+    top: -98px; */
+    border-radius: 10px;
+}
+
+.playListName {
+    /* width: 99px; */
+    /* height: 21px; */
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 30px;
+}
+
+.playListDesc {
+    /* position: absolute; */
+    /* width: 5px; */
+    /* height: 34px; */
+    /* left: 413px;
+    top: 441px; */
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    color: #6c757d;
+    /* word-wrap: break-word; */
+}
+
+
+/* .playListDesc p {
+    word-wrap: break-word;
+} */

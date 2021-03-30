@@ -1,3 +1,47 @@
 <div class="container">
-    <h1>Home Page</h1>
+    <div class="small-container">
+        <div class="featuredPlaylists">
+            <p>Recently Played</p>
+        </div>
+
+
+        <div class="playListRow">
+
+            <div class="playListBox" *ngFor="let playList of playLists | paginate: { itemsPerPage: 5, currentPage: p }">
+                <div class="playListImg">
+                    <img src="{{playList.image_url}}">
+                </div>
+                <div class="playListName">
+                    {{playList.name}}
+                </div>
+                <div class="playListDesc">
+                    {{playList.description}}
+                </div>
+            </div>
+            <pagination-controls (pageChange)="p = $event" previousLabel="" nextLabel=""></pagination-controls>
+
+        </div>
+
+        <div class="featuredPlaylists">
+            <p>Featured Playlists</p>
+        </div>
+
+
+        <div class="playListRow">
+
+            <div class="playListBox" *ngFor="let playList of playLists | paginate: { itemsPerPage: 5, currentPage: p }">
+                <div class="playListImg">
+                    <img src="{{playList.image_url}}">
+                </div>
+                <div class="playListName">
+                    {{playList.name}}
+                </div>
+                <div class="playListDesc">
+                    {{playList.description}}
+                </div>
+            </div>
+            <pagination-controls (pageChange)="p = $event" previousLabel="" nextLabel=""></pagination-controls>
+
+        </div>
+    </div>
 </div>
