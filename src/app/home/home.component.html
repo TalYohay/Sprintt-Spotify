@@ -1,27 +1,30 @@
 <div class="container">
     <div class="small-container">
-        <div class="featuredPlaylists">
-            <p>Recently Played</p>
-        </div>
-
-
-        <div class="playListRow">
-
-            <div class="playListBox" *ngFor="let playList of playLists | paginate: { itemsPerPage: 5, currentPage: p }">
-                <div class="playListImg">
-                    <img src="{{playList.image_url}}">
-                </div>
-                <div class="playListName">
-                    {{playList.name}}
-                </div>
-                <div class="playListDesc">
-                    {{playList.description}}
-                </div>
+        <div *ngIf="RecentlyPlayedList.playlists > 0">
+            <div class="featuredPlaylists">
+                <p>Recently Played</p>
             </div>
-            <pagination-controls (pageChange)="p = $event" previousLabel="" nextLabel=""></pagination-controls>
 
+
+            <div class="playListRow">
+
+                <div class="playListBox" *ngFor="let playLists of RecentlyPlayedList.playlists | paginate: { itemsPerPage: 5, currentPage: p }">
+                    <a [routerLink]="['/', 'playlist', playLists.playlist_id]">
+                        <div class="playListImg">
+                            <img src="{{playLists.image_url}}">
+                        </div>
+                    </a>
+                    <div class="playListName">
+                        {{playLists.name}}
+                    </div>
+                    <div class="playListDesc">
+                        {{playLists.description}}
+                    </div>
+                </div>
+                <pagination-controls (pageChange)="p = $event" previousLabel="" nextLabel=""></pagination-controls>
+
+            </div>
         </div>
-
         <div class="featuredPlaylists">
             <p>Featured Playlists</p>
         </div>
@@ -29,10 +32,12 @@
 
         <div class="playListRow">
 
-            <div class="playListBox" *ngFor="let playList of playLists | paginate: { itemsPerPage: 5, currentPage: p }">
-                <div class="playListImg">
-                    <img src="{{playList.image_url}}">
-                </div>
+            <div class="playListBox" *ngFor="let playList of FeaturedPlayLists.playlists | paginate: { itemsPerPage: 5, currentPage: p }">
+                <a [routerLink]="['/', 'playlist', playList.playlist_id]">
+                    <div class="playListImg">
+                        <img src="{{playList.image_url}}">
+                    </div>
+                </a>
                 <div class="playListName">
                     {{playList.name}}
                 </div>

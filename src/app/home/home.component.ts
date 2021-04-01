@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import{ PlayListsService } from '../services/play-lists.service'
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -7,12 +7,48 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 p:any;
-  constructor() { }
+tests:any
+FeaturedPlayLists:any=[]
+MoodPlayLists:any=[]
+RecentlyPlayedList:any=[]
+  constructor(public playListsAPI:PlayListsService) { }
 
   ngOnInit(): void {
-    console.log(this.playLists)
+    this.featuredPlayList();
+    this.MoodPlayList();
+    this.RecentlyPlayed();
+    // console.log(this.playLists);
+    // this.test()
   }
  
+  // test(){
+  //   this.playListsAPI.test().subscribe((data)=>{
+  //     this.tests = data;
+  //     console.log(this.tests)
+  //   })
+  // }
+
+  featuredPlayList(){
+    this.playListsAPI.featuredPlaylist().subscribe((data)=>{
+      this.FeaturedPlayLists = data;
+      console.log('featuredPlayLists:',this.FeaturedPlayLists)
+    })
+  }
+
+  MoodPlayList(){
+    this.playListsAPI.MoodPlaylist().subscribe((data)=>{
+      this.MoodPlayLists = data;
+      console.log('MoodPlayLists:', this.MoodPlayLists)
+    })
+  }
+
+  RecentlyPlayed(){
+    this.playListsAPI.RecentlyPlayed().subscribe((data)=>{
+      this.RecentlyPlayedList = data;
+      console.log('RecentlyPlayed:', this.RecentlyPlayedList)
+    })
+  }
+
    playLists = [
     {
       description: "Start your day with calm and cool jazz.",
