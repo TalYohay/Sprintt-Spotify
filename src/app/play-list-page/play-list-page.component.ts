@@ -19,8 +19,10 @@ export class PlayListPageComponent implements OnInit {
   selectedSong:any = {}
   image_tracker:any = 'play'
   selectedRow:any;
-  play:any;
+  play:any = new Audio()
   token:any = '1072694e-6a8b-4973-9cd0-96ac1ee6e4a2'
+
+  player = new Audio()
 
   ngOnInit(): void {
     this.playListId = this.actRoute.snapshot.params['id']
@@ -77,11 +79,21 @@ setClickedRow(index:any){
 
 }
 
-playSong(){
-  this.playListsAPI.playSong(this.selectedSong.track_id).subscribe((data)=>{
-    this.play = data
-    console.log('play:', this.play)
-  })
+// playSong(){
+//   this.playListsAPI.playSong(this.selectedSong.track_id).subscribe((data)=>{
+//     this.play = data
+//     console.log('play:', this.play)
+//     // this.player.play()
+//   })
+  
+// }
+
+playSong(id:any){
+  this.playListsAPI.playSong(id)
+}
+
+pauseSong(id:any){
+  this.playListsAPI.pauseSong(id)
 }
 
 //  getEncryptedToken = (token:any='1072694e-6a8b-4973-9cd0-96ac1ee6e4a2') => {
