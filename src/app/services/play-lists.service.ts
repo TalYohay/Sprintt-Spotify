@@ -11,20 +11,6 @@ export class PlayListsService {
   constructor(public http:HttpClient) { }
 
 
-  test(){
-    
-    const token = '1072694e-6a8b-4973-9cd0-96ac1ee6e4a2'
-    let headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'user-access-token': token
-    });
-    
-    const httpOptions = {
-      headers: headers
-    };
-    return this.http.get(`https://cors.bridged.cc/${this.url}`, httpOptions);
-    };
-
 
     featuredPlaylist(){
       const token = '1072694e-6a8b-4973-9cd0-96ac1ee6e4a2'
@@ -66,8 +52,31 @@ export class PlayListsService {
           return this.http.get(`http://api.sprintt.co/spotify/recently_played_playlists?limit=10`, httpOptions);
           };
 
-          getPlayListId(id:any){
-            return this.http.get (`http://api.sprintt.co/spotify/playlist_tracks/${id}`)
+          getSongsByPlaylistID(id:any){
+
+            const token = '1072694e-6a8b-4973-9cd0-96ac1ee6e4a2'
+            let headers = new HttpHeaders({
+              'Content-Type': 'application/json',
+              'user-access-token': token
+            });
+            
+            const httpOptions = {
+              headers: headers
+            };
+            return this.http.get (`http://api.sprintt.co/spotify/playlist_tracks/${id}`, httpOptions)
+          }
+
+
+
+
+          playSong(id:any){
+            const getEncryptedToken = (token:any='1072694e-6a8b-4973-9cd0-96ac1ee6e4a2') => {
+              let date = new Date();
+              let utcTime = `${date.getUTCHours()}:${date.getUTCMinutes()}:${date.getUTCSeconds()}`
+              let stringToEncrypt = `${token}===${utcTime}`
+              return btoa(stringToEncrypt)
+            }
+            return this.http.get(`http://api.sprintt.co/spotify/play/${id}?access=${getEncryptedToken()}`)
           }
         }
 

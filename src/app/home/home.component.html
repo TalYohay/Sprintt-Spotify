@@ -1,6 +1,6 @@
 <div class="container">
     <div class="small-container">
-        <div *ngIf="RecentlyPlayedList.playlists > 0">
+        <!-- <div *ngIf="RecentlyPlayedList.playlists > 0">
             <div class="featuredPlaylists">
                 <p>Recently Played</p>
             </div>
@@ -8,7 +8,7 @@
 
             <div class="playListRow">
 
-                <div class="playListBox" *ngFor="let playLists of RecentlyPlayedList.playlists | paginate: { itemsPerPage: 5, currentPage: p }">
+                <div class="playListBox" *ngFor="let playLists of RecentlyPlayedList.playlists | paginate: {id:'first', itemsPerPage: 5, currentPage: p1 }">
                     <a [routerLink]="['/', 'playlist', playLists.playlist_id]">
                         <div class="playListImg">
                             <img src="{{playLists.image_url}}">
@@ -21,10 +21,11 @@
                         {{playLists.description}}
                     </div>
                 </div>
-                <pagination-controls (pageChange)="p = $event" previousLabel="" nextLabel=""></pagination-controls>
+                <pagination-controls (pageChange)="p1 = $event" id="first" previousLabel="" nextLabel=""></pagination-controls>
 
             </div>
-        </div>
+        </div> -->
+
         <div class="featuredPlaylists">
             <p>Featured Playlists</p>
         </div>
@@ -32,7 +33,7 @@
 
         <div class="playListRow">
 
-            <div class="playListBox" *ngFor="let playList of FeaturedPlayLists.playlists | paginate: { itemsPerPage: 5, currentPage: p }">
+            <div class="playListBox" *ngFor="let playList of FeaturedPlayLists.playlists | paginate: {id:'first', itemsPerPage: 5, currentPage: p1 }">
                 <a [routerLink]="['/', 'playlist', playList.playlist_id]">
                     <div class="playListImg">
                         <img src="{{playList.image_url}}">
@@ -45,8 +46,62 @@
                     {{playList.description}}
                 </div>
             </div>
-            <pagination-controls (pageChange)="p = $event" previousLabel="" nextLabel=""></pagination-controls>
+            <div class="firstPagination">
+                <pagination-controls (pageChange)="p1=$event" id="first" previousLabel=" " nextLabel=" "></pagination-controls>
+            </div>
+        </div>
 
+        <div class="featuredPlaylists">
+            <p>Featured Playlists</p>
+        </div>
+
+
+        <div class="playListRow">
+
+            <div class="playListBox" *ngFor="let playList of FeaturedPlayLists.playlists | paginate: {id:'second', itemsPerPage: 5, currentPage: p2 }">
+                <a [routerLink]="['/', 'playlist', playList.playlist_id]">
+                    <div class="playListImg">
+                        <img src="{{playList.image_url}}">
+                    </div>
+                </a>
+                <div class="playListName">
+                    {{playList.name}}
+                </div>
+                <div class="playListDesc">
+                    {{playList.description}}
+                </div>
+            </div>
+            <div class="secondPagination">
+                <pagination-controls (pageChange)="p2=$event" id="second" previousLabel=" " nextLabel=" "></pagination-controls>
+            </div>
+        </div>
+
+
+
+        <div class="featuredPlaylists">
+            <p>Mood Playlists</p>
+        </div>
+
+
+        <div class="playListRow">
+
+            <div class="playListBox" *ngFor="let playListtt of MoodPlayLists.playlists | paginate: {id:'third', itemsPerPage: 5, currentPage: p3 }">
+
+                <a [routerLink]="['/', 'playlist', playListtt.playlist_id]">
+                    <div class="playListImg">
+                        <img src="{{playListtt.image_url}}">
+                    </div>
+                </a>
+                <div class="playListName">
+                    {{playListtt.name}}
+                </div>
+                <div class="playListDesc">
+                    {{playListtt.description}}
+                </div>
+            </div>
+            <div class="thirdPagination">
+                <pagination-controls (pageChange)="p3=$event" id="third" previousLabel=" " nextLabel=" "></pagination-controls>
+            </div>
         </div>
     </div>
 </div>

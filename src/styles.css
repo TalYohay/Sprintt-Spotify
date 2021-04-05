@@ -1,4 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+body {
+    background: #F1F7F1;
+    box-shadow: 0px 4px 40px rgba(150, 168, 150, 0.3);
+}
+
 * {
     box-sizing: border-box;
     padding: 0;
@@ -8,31 +13,40 @@
 
 .ngx-pagination .pagination-previous a::before,
 .ngx-pagination .pagination-previous.disabled::before {
-    position: absolute;
-    left: 1300px;
-    top: 143.81px;
     content: "\2B9C" !important;
-    font-size: 24px;
-    /* color: yellow !important; */
 }
 
 .ngx-pagination .pagination-next a::after,
 .ngx-pagination .pagination-next.disabled::after {
+    content: "\2B9E" !important;
+}
+
+.firstPagination {
     position: absolute;
     font-size: 24px;
-    left: 1340px;
-    top: 143.81px;
-    content: "\2B9E" !important;
-    /* color: brown !important; */
+    left: 1000px;
+    top: 130px;
 }
+
+.secondPagination {
+    position: absolute;
+    font-size: 24px;
+    left: 1000px;
+    top: 610px;
+}
+
+.thirdPagination {
+    position: absolute;
+    font-size: 24px;
+    left: 1000px;
+    top: 1095px;
+}
+
+
+/* */
 
 .ngx-pagination li:not(.pagination-previous):not(.pagination-next) {
     display: none;
-    /* color: brown !important; */
-}
-
-.ngx-pagination .pagination-next a::after,
-.ngx-pagination .pagination-next.disabled::after {
     /* color: brown !important; */
 }
 

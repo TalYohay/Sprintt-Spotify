@@ -1,1 +1,75 @@
-<p>play-list-page works!</p>
+<div class="container">
+
+    <div class="small-container">
+        <div class="filter">
+            <i class="fa fa-search" style="color:#999;"></i>
+            <input type="text" placeholder="Filter" [(ngModel)]="searchTerm" [ngModelOptions]="{standalone: true}">
+        </div>
+        <div class="tableWrapper">
+            <table *ngIf="playListSongs.tracks.length > 0">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th>title</th>
+                        <th>artist</th>
+                        <th>album</th>
+                        <th>release date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- | search:searchTerm -->
+                    <tr *ngFor="let song of playListSongs.tracks | search:searchTerm; let i = index;" (click)="setClickedRow(i)" [class.selected]="i==selectedRow">
+                        <td (click)="getSongInfo(song)"><img src="../assets/play_line_icon.png" class="playBtn" (click)="changeImg2(); playSong()" id="imgClickAndChange"></td>
+                        <!-- <img class="playBtn" src="..\assets\play_line_icon.png"> -->
+                        <td><img src="..\assets\not_liked.png"></td>
+                        <td> {{song.name}}</td>
+                        <td>{{song.artists_names}}</td>
+                        <td>{{song.album_name}}</td>
+                        <td>{{song.release_date | date: 'yyyy-MM-dd'}}</td>
+                    </tr>
+
+
+                </tbody>
+            </table>
+
+
+
+        </div>
+
+    </div>
+    <div *ngIf="(playListSongs.tracks | search:searchTerm).length === 0">
+        <h1 class="error">No Songs Found!</h1>
+    </div>
+
+</div>
+<div class="playBar">
+    <div class="songBox">
+        <div class="playBarImg">
+            <img src="..\assets\liked_songs.jpg">
+        </div>
+        <div class="songInfo">
+            <div class="songName">
+                {{selectedSong.name}}
+            </div>
+            <div class="artist">
+                {{selectedSong.album_name}}
+            </div>
+        </div>
+    </div>
+    <div class="playBarButtons">
+        <img src="../assets/controller_icons/bar_prev.png">
+        <img src="../assets/controller_icons/bar_play.png" id="imgClickAndChange2" (click)="changeImg2()">
+        <img src="../assets/controller_icons/bar_next.png">
+
+    </div>
+    <div class="progressBar">
+        <div class="timePassed">0:00</div>
+        <div class="bar"></div>
+        <div class="songDuration">{{selectedSong.duration | date: 'mm:ss'}}</div>
+    </div>
+    <div class="volume">
+        <img src="../assets/volume.png">
+        <div class="volumeBar"></div>
+    </div>
+</div>

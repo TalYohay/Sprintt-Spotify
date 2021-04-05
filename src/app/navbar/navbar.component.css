@@ -7,7 +7,7 @@
 }
 
 .navbar {
-    position: absolute;
+    position: fixed;
     width: 270px;
     height: 1080px;
     left: -1px;

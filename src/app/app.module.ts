@@ -10,6 +10,8 @@ import { LikedsongsComponent } from './likedsongs/likedsongs.component';
 import {NgxPaginationModule} from 'ngx-pagination'; 
 import { HttpClientModule } from '@angular/common/http';
 import { PlayListPageComponent } from './play-list-page/play-list-page.component';
+import { SearchPipe } from './pipes/search.pipe';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -19,13 +21,15 @@ import { PlayListPageComponent } from './play-list-page/play-list-page.component
     HomeComponent,
     BrowseComponent,
     LikedsongsComponent,
-    PlayListPageComponent
+    PlayListPageComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgxPaginationModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule 
   ],
   providers: [PlayListsService],
   bootstrap: [AppComponent]
