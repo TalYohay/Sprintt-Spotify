@@ -161,6 +161,7 @@ th {
 .tableWrapper table tr:hover .playBtn {
     visibility: visible;
     padding-top: 3px;
+    cursor: pointer;
 }
 
 
@@ -281,6 +282,7 @@ th {
 }
 
 .showBtn {
+    cursor: pointer;
     visibility: visible;
     padding-top: 3;
 }
