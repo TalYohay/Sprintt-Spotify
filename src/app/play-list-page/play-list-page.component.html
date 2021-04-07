@@ -1,5 +1,12 @@
 <div class="container">
+    <div class="banner">
+        <div class="playListInfo">
+            <p>{{playListSongs.playlist_tracks}} Songs</p>
+            <p>{{playListSongs.playlist_duration}}</p>
 
+        </div>
+
+    </div>
     <div class="small-container">
         <div class="filter">
             <i class="fa fa-search" style="color:#999;"></i>
@@ -60,9 +67,9 @@
         </div>
     </div>
     <div class="playBarButtons">
-        <img src="../assets/controller_icons/bar_prev.png">
+        <img src="../assets/controller_icons/bar_prev.png" (click)="playPreviousSong()">
         <img src="../assets/controller_icons/bar_play.png" id="imgClickAndChange2" (click)="changeImg2(); togglePlaystateSong(selectedSong.track_id)">
-        <img src="../assets/controller_icons/bar_next.png">
+        <img src="../assets/controller_icons/bar_next.png" (click)="playNextSong();">
 
     </div>
     <div class="progressBar">

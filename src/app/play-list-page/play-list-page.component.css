@@ -286,3 +286,13 @@ th {
     visibility: visible;
     padding-top: 3;
 }
+
+.banner {
+    width: 100%
+}
+
+.banner .playListInfo {
+    position: absolute;
+    right: 20%;
+    top: 5%
+}
