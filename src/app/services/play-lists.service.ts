@@ -75,6 +75,34 @@ export class PlayListsService {
     );
   }
 
+  MarklikedSongs(id:any, status:any){
+    const token = "1072694e-6a8b-4973-9cd0-96ac1ee6e4a2";
+    let headers = new HttpHeaders({
+      "Content-Type": "application/json",
+      "user-access-token": token,
+      
+    });
+
+    const httpOptions = {
+      headers: headers
+    };
+    return this.http.post(`https://api.sprintt.co/spotify/liked_tracks/${id}?status=${status}`,httpOptions);
+ 
+  }
+
+  getLikeSongs(){
+    const token = "1072694e-6a8b-4973-9cd0-96ac1ee6e4a2";
+    let headers = new HttpHeaders({
+      "Content-Type": "application/json",
+      "user-access-token": token
+    });
+
+    const httpOptions = {
+      headers: headers
+    };
+    return this.http.get('https://api.sprintt.co/spotify/liked_tracks',httpOptions)
+  }
+
   generateToken() {
     let date = new Date();
     let utcTime = `${date.getUTCHours()}:${date.getUTCMinutes()}:${date.getUTCSeconds()}`;

@@ -24,16 +24,18 @@ export class PlayListPageComponent implements OnInit {
   selectedRow: any;
   nextSong:any;
   previousSong:any;
+  volume:any;
   token: any = "1072694e-6a8b-4973-9cd0-96ac1ee6e4a2";
   player = new Audio();
-    test:any
-    prodId:any
-    test3:any
+  likedSongs:any = []
+
+
+
+
   ngOnInit(): void {
     this.playListId = this.actRoute.snapshot.params["id"];
-     this.prodId = this.actRoute.snapshot.paramMap.get('id');
     console.log("Play list ID:", this.playListId);
-    console.log("prodId:", this.prodId);
+   
     this.getPlaylistSongs();
     this.combinAllAPI();
   }
@@ -89,15 +91,11 @@ export class PlayListPageComponent implements OnInit {
     this.selectedRow = index;
     console.log("this.selectedRow index:", this.selectedRow);
 
-    let element = <HTMLInputElement>(
-      document.getElementById("imgClickAndChange")
-    );
-    element.classList.remove("playBtn");
-    element.classList.add("showBtn");
   }
 
   playNextSong(){
-      // if(this.selectedSong){
+  
+    if(this.selectedSong){
       console.log(this.selectedSong)
       this.nextSong = this.playListSongs.tracks[this.selectedRow +1]
       console.log("next song:",this.nextSong.name) 
@@ -111,16 +109,13 @@ export class PlayListPageComponent implements OnInit {
       this.player.load();
       this.player.play();
       this.selectedSong=this.nextSong;
-      if(this.player.ended){
-        this.playNextSong()
-      }
-  // }
-  
+    }
+     
 }
 
 
   playPreviousSong(){
-      if(this.selectedSong){
+      
       console.log(this.selectedSong)
       
       this.previousSong = this.playListSongs.tracks[this.selectedRow-1]
@@ -134,7 +129,7 @@ export class PlayListPageComponent implements OnInit {
       this.player.src = songUrl;
       this.player.load();
       this.player.play();
-    }    
+   
     this.selectedSong=this.previousSong;
   }
 
@@ -147,16 +142,46 @@ export class PlayListPageComponent implements OnInit {
       this.player.src = songUrl;
       this.player.load();
       this.player.play();
-
+      if(this.player.onended){
+        console.log("this.player.onended:",this.player.onended)
+        this.player.addEventListener("ended", this.playNextSong)
+      }
     } else {
       if (this.player.paused) {
         this.player.play();
+
       } else {
         this.player.pause();
       }
     }
-
   }
 
+  setVolume(){
+    // console.log("volume:",this.player.volume)    
+    // if(this.player.volume==0){
+    //   console.log("volume:",this.player.volume)
+    //   this.player.volume=1.0
+    // }else{
+    //   this.player.volume = 0;
+    //   console.log("volume:",this.player.volume)
+    // }
+    //  let vval = parseFloat(val);
+    //  if (isFinite(vval)) {
+    //   this.player.volume = vval;
+    // }
+    // console.log('Before: ' + this.player.volume);
+    // this.player.volume = vval / 100;
+    // console.log('After: ' + this.player.volume);
+    // this.player.volume = document.getElementById("volume1").value;
+  }
+
+  markLikedSongs(id:any){
+    this.playListsAPI.MarklikedSongs(id,true).subscribe((data:any)=>{
+      this.likedSongs = data
+      console.log(" this.likedSongs:",  this.likedSongs)
+    })
+  }
 
 }
+
+

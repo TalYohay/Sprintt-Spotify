@@ -266,6 +266,7 @@ th {
 .volume img {
     width: 18.28px;
     height: 20px;
+    cursor: pointer;
 }
 
 .volumeBar {

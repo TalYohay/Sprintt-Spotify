@@ -1,10 +1,353 @@
 .container {
     position: absolute;
-    width: 1920px;
-    height: 1079px;
+    /* width: 100vw; */
+    right: 0;
+    /* height: 100vh; */
     left: 270px;
     top: 0;
-    background: #F1F7F1;
+    /* background: #F1F7F1; */
     /* Cover shadow */
-    box-shadow: 0px 4px 40px rgba(150, 168, 150, 0.3);
+    /* box-shadow: 0px 4px 40px rgba(150, 168, 150, 0.3); */
+}
+
+.small-container {
+    /* width: 1500px; */
+    /* margin: auto; */
+    /* margin-left: 100px;
+    margin-right: 200px; */
+    margin-left: 50px;
+    margin-right: 100px;
+    margin-top: 200px;
+}
+
+input[type="text"] {
+    background: #F1F7F1;
+    outline-style: none;
+    box-shadow: none;
+    border-color: transparent;
+}
+
+::placeholder {
+    font-style: normal;
+    font-weight: 300;
+}
+
+.tableWrapper {
+    overflow-y: scroll;
+    /* width: 100%;
+    height: 500px; */
+    /* overflow-x: auto; */
+    width: 1190px;
+    height: 500px;
+}
+
+
+/* .tableWrapper::-webkit-scrollbar-thumb {
+    background-color: #C1C1C1;
+    border-radius: 11px;
+    width: 10px;
+} */
+
+
+/* 
+.tableWrapper table::-webkit-scrollbar-thumb {
+    background: blue;
+    border-radius: 10px;
+} */
+
+
+/* .tableWrapper::-webkit-scrollbar {
+    background-color: transparent;
+    width: 10px;
+}
+
+
+
+.tableWrapper:hover::-webkit-scrollbar {
+    background-color: #C1C1C1;
+    border-radius: 11px;
+    scrollbar-width: none;
+    width: 10px;
+} */
+
+
+/* width */
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+
+/* Track */
+
+ ::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+
+/* Handle */
+
+ ::-webkit-scrollbar-thumb {
+    background: #C1C1C1;
+    border-radius: 11px;
+    /* background: transparent; */
+}
+
+
+/* Handle on hover */
+
+ ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.tableWrapper table {
+    border-collapse: collapse;
+    /* width: 1200px; */
+    /* height: 100px; */
+    width: 100%
+}
+
+.tableWrapper table thead tr th {
+    text-transform: uppercase;
+    /* border-bottom: 2px solid #646464; */
+    box-shadow: inset 0 -2px 0 #646464;
+    font-size: 22px;
+    font-weight: 300;
+    text-align: left;
+    line-height: 26px;
+    white-space: nowrap;
+    top: 0;
+    background: #F1F7F1;
+    padding-bottom: 10px;
+}
+
+th {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+.tableWrapper table tr td {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 26px;
+    /* identical to box height */
+    border-bottom: 0.5px solid #646464;
+    border-bottom-width: thin;
+    padding: 10px 25px 10px 10px;
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.tableWrapper table tr:hover {
+    background: rgba(29, 185, 84, 0.2);
+    /* border-right: 1px solid rgba(29, 185, 84, 0.2); */
+    /* border-radius: 10px; */
+    /* width: 1300px !important; */
+}
+
+.tableWrapper table tr td img {
+    width: 19.98px;
+    height: 20px;
+}
+
+.playBtn {
+    visibility: hidden;
+}
+
+.tableWrapper table tr:hover .playBtn {
+    visibility: visible;
+    padding-top: 3px;
+    cursor: pointer;
+}
+
+
+/* .playBtn {
+    width: 19.98px;
+    height: 20px;
+} */
+
+.error {
+    position: absolute;
+    top: 200px;
+}
+
+.playBar {
+    position: absolute;
+    width: 100%;
+    height: 100px;
+    left: 0px;
+    bottom: 0px;
+    background: linear-gradient(0deg, #FFFFFF, #FFFFFF), #F1F1F1;
+    display: flex;
+}
+
+.songInfo {
+    /* display: flex;
+    flex-direction: column; */
+    margin-left: 40px;
+}
+
+.playBar .playBarImg img {
+    width: 145px;
+    height: 96px;
+}
+
+.songBox {
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+.songName {
+    font-size: 24px;
+    line-height: 28px;
+    margin-bottom: 10px;
+}
+
+.artist {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+    color: #646464;
+}
+
+.playBarButtons {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    left: 45%;
+    top: 20%;
+}
+
+.playBarButtons img {
+    width: 30px;
+    height: 30px;
+    margin-left: 30px;
+    margin-right: 30px;
+    cursor: pointer;
+}
+
+.playBarButtons img:hover {
+    filter: opacity(0.5) drop-shadow(0 0 0 grey);
+}
+
+.progressBar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 30%;
+    bottom: 20%;
+}
+
+.bar {
+    background: #C4C4C4;
+    border-radius: 11px;
+    width: 800px;
+    height: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.volume {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 85%;
+    top: 30%;
+}
+
+.volume img {
+    width: 18.28px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.volumeBar {
+    background: #C4C4C4;
+    border-radius: 11px;
+    width: 80px;
+    height: 5px;
+    margin-left: 10px;
+}
+
+.selected {
+    background: rgba(29, 185, 84, 0.2) !important;
+    /* color: white; */
+}
+
+.showBtn {
+    cursor: pointer;
+    visibility: visible;
+    padding-top: 3;
+}
+
+.banner {
+    width: 100%;
+    /* filter: brightness(100%); */
+    z-index: 10;
+}
+
+.banner .playListInfo {
+    /* position: absolute;
+    right: 20%;
+    top: 5%; */
+    display: flex;
+    /* justify-content: center;
+    align-items: center; */
+}
+
+.banner .playListInfo p {
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 36px;
+    line-height: 43px;
+    /* identical to box height */
+    color: #F1F1F1;
+    text-shadow: 0px 0px 40px rgba(0, 0, 0, 0.3);
+    position: absolute;
+    right: 200px;
+    top: 50px;
+}
+
+.banner .playListInfo h1 {
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 36px;
+    line-height: 43px;
+    /* identical to box height */
+    color: #F1F1F1;
+    text-shadow: 0px 0px 40px rgba(0, 0, 0, 0.3);
+    white-space: nowrap;
+    position: absolute;
+    left: 109px;
+    top: 50px;
+}
+
+.banner img {
+    height: 150px;
+    position: absolute;
+    width: 100%;
+    left: 0px;
+    top: 0px;
+    filter: brightness(80%);
+    /* opacity: 0.4; */
+}
+
+#imgcontainer {
+    opacity: 0;
+    background-color: Black;
+    z-index: 10;
+}
+
+#imgcontainer img {
+    Z-index: 5;
 }
