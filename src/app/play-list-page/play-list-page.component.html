@@ -27,11 +27,12 @@
                 <tbody>
                     <!-- | search:searchTerm -->
 
-                    <tr *ngFor="let song of playListSongs?.tracks | search:searchTerm; let i = index;" (click)="setClickedRow(i)" [class.selected]="i==selectedRow">
-                        <td (click)="getSongInfo(song)"><img src="../assets/play_line_icon.png" class="playBtn" (click)="changeImg2(); togglePlaystateSong(song.track_id)" id="imgClickAndChange">
+                    <tr *ngFor="let song of playListSongs?.tracks | search:searchTerm; let i = index;" [class.selected]="i==selectedRow">
+                        <td>
+                            <img src="../assets/play_line_icon.png" class="playBtn" (click)="togglePlaystateSong(song.track_id);getSongInfo(song);setClickedRow(i)" id="imgClickAndChange">
                         </td>
                         <!-- <img class="playBtn" src="..\assets\play_line_icon.png"> -->
-                        <td><img src="..\assets\not_liked.png" (click)="markLikedSongs(song.track_id)" style="cursor:pointer"></td>
+                        <td><img src="..\assets\not_liked.png" id="likedImg" (click)="toggleLikedSongs(song.track_id);setClickedRow(i)" style="cursor:pointer"></td>
                         <td> {{song.name}}</td>
                         <td>{{song.artists_names}}</td>
                         <td>{{song.album_name}}</td>
@@ -52,6 +53,7 @@
     </div>
 
 </div>
+
 <div class="playBar">
     <div class="songBox">
         <div class="playBarImg">
@@ -73,12 +75,17 @@
 
     </div>
     <div class="progressBar">
-        <div class="timePassed">0:00</div>
-        <div class="bar"></div>
-        <div class="songDuration">{{selectedSong.duration}}</div>
+        <!-- <div *ngIf="currentTime"> -->
+        <div class="timePassed">{{currentTime}}</div>
+        <!-- </div> -->
+        <input type="range" id="bars" class="bar songDuration" [value]="player.currentTime" min="0" max="{{player.duration}}" (input)="setSeekTo($event)">
+
+        <!-- <div class="bar" (click)="setProgress($event)"></div> -->
+        <div class="songDuration">{{selectedSong.duration | date: 'mm:ss'}}</div>
+        <!-- <div class="songDuration">{{currentTime}}</div> -->
     </div>
     <div class="volume">
-        <img src="../assets/volume.png">
-        <input class="volumeBar" id="volume1" type="range" min="0" max="100" step="1" value="50" (change)="setVolume()">
+        <img src="../assets/volume.png" (click)="toggleMuteVolume()">
+        <input class="volumeBar" id="volume1" type="range" min="0" max="1" step="0.01" value="0.5" (input)="setVolume($event)">
     </div>
 </div>

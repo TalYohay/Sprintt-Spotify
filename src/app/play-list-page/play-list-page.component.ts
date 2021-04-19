@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit,ChangeDetectorRef } from "@angular/core";
 import { ActivatedRoute, ParamMap, Router } from "@angular/router";
 import { PlayListsService } from "../services/play-lists.service";
 import { Observable, forkJoin } from "rxjs";
@@ -10,9 +10,11 @@ import { switchMap } from "rxjs/operators" // RxJS v6
   styleUrls: ["./play-list-page.component.css"]
 })
 export class PlayListPageComponent implements OnInit {
+  
   constructor(
     public playListsAPI: PlayListsService,
-    public actRoute: ActivatedRoute
+    public actRoute: ActivatedRoute,
+    public cd: ChangeDetectorRef
   ) {}
 
   playListId: any;
@@ -20,25 +22,50 @@ export class PlayListPageComponent implements OnInit {
   searchTerm: any;
   playlists3: any = [];
   selectedSong: any = {};
-  image_tracker: any = "play";
+  image_tracker: any = "notLiked";
   selectedRow: any;
   nextSong:any;
   previousSong:any;
   volume:any;
   token: any = "1072694e-6a8b-4973-9cd0-96ac1ee6e4a2";
   player = new Audio();
-  likedSongs:any = []
-
-
+  likedSong:any
+  currentTime:any;
+  duration:any;
+  progressPercent:any
+  minutes:any;
+  seconds:any
+  ee:any
+  seek:any;
+  playbackPosition: any;
+  newPosition: any;
+  bla:any
+  likedSongsArray:any=[]
 
 
   ngOnInit(): void {
     this.playListId = this.actRoute.snapshot.params["id"];
     console.log("Play list ID:", this.playListId);
-   
+    
     this.getPlaylistSongs();
     this.combinAllAPI();
+  
+    this.updateProgress()
+  //   this.player.onended = function() {
+  //     // Whatever you want to do when the audio ends.
+  //     this.playNextSong()
+  // }
+  this.player.addEventListener("ended",()=>{
+    this.playNextSong()
+  });
+//   this.player.addEventListener("timeupdate",()=>{
+// this.test3()  })
+this.playListsAPI.getLikeSongs().subscribe(data=>{
+  this.likedSongsArray = data
+  console.log("this.likedSongsArray:",this.likedSongsArray)
+})
   }
+  
 
   getPlaylistSongs() {
     this.playListsAPI.getSongsByPlaylistID(this.playListId).subscribe(data => {
@@ -72,30 +99,53 @@ export class PlayListPageComponent implements OnInit {
   }
 
   changeImg2() {
+    // let image = <HTMLInputElement>document.getElementById("imgClickAndChange");
+    // let image2 = <HTMLInputElement>(
+    //   document.getElementById("imgClickAndChange2")
+    // );
+    // if (this.image_tracker == "play") {
+    //   image.src = "../assets/pause_line_icon.png";
+    //   image2.src = "../assets/controller_icons/bar_pause.png";
+    //   this.image_tracker = "pause";
+    // } else {
+    //   image.src = "../assets/play_line_icon.png";
+    //   image2.src = "../assets/controller_icons/bar_play.png";
+    //   this.image_tracker = "play";
+    // }
     let image = <HTMLInputElement>document.getElementById("imgClickAndChange");
-    let image2 = <HTMLInputElement>(
-      document.getElementById("imgClickAndChange2")
-    );
-    if (this.image_tracker == "play") {
+    let image2 = <HTMLInputElement>(document.getElementById("imgClickAndChange2"));
+    if(this.player.paused){
       image.src = "../assets/pause_line_icon.png";
       image2.src = "../assets/controller_icons/bar_pause.png";
-      this.image_tracker = "pause";
-    } else {
-      image.src = "../assets/play_line_icon.png";
+    }else{
+            image.src = "../assets/play_line_icon.png";
       image2.src = "../assets/controller_icons/bar_play.png";
-      this.image_tracker = "play";
     }
+  }
+
+  changeLikedImg(id:any){
+    // let likedImg = <HTMLInputElement>document.getElementById("likedImg");
+    // if(this.image_tracker=="notLiked"){
+    //   likedImg.src = "../assets/liked.png"
+    //   this.image_tracker="liked"
+    //   console.log(this.image_tracker)
+      
+    // }else{
+    //   if(this.image_tracker=="liked"){
+    //     likedImg.src="../assets/not_liked.png"
+    //   }
+    // }
+    console.log(id)
   }
 
   setClickedRow(index: any) {
     this.selectedRow = index;
     console.log("this.selectedRow index:", this.selectedRow);
-
   }
 
   playNextSong(){
   
-    if(this.selectedSong){
+    
       console.log(this.selectedSong)
       this.nextSong = this.playListSongs.tracks[this.selectedRow +1]
       console.log("next song:",this.nextSong.name) 
@@ -108,8 +158,10 @@ export class PlayListPageComponent implements OnInit {
       this.player.src = songUrl;
       this.player.load();
       this.player.play();
-      this.selectedSong=this.nextSong;
-    }
+      (<HTMLInputElement>document.getElementById("bars")).value="0";
+            this.selectedSong=this.nextSong;
+      
+    
      
 }
 
@@ -129,57 +181,153 @@ export class PlayListPageComponent implements OnInit {
       this.player.src = songUrl;
       this.player.load();
       this.player.play();
-   
+      (<HTMLInputElement>document.getElementById("bars")).value="0";   
     this.selectedSong=this.previousSong;
+    
   }
 
 
   togglePlaystateSong(id: number) {
 
+    let image = <HTMLInputElement>document.getElementById("imgClickAndChange");
+    let image2 = <HTMLInputElement>(
+      document.getElementById("imgClickAndChange2"));
+     
     if (!this.selectedSong || this.selectedSong.track_id !== id) {
       const token = this.playListsAPI.generateToken();
       const songUrl = `http://api.sprintt.co/spotify/play/${id}?access=${token}`;
       this.player.src = songUrl;
       this.player.load();
       this.player.play();
-      if(this.player.onended){
-        console.log("this.player.onended:",this.player.onended)
-        this.player.addEventListener("ended", this.playNextSong)
-      }
+      // (<HTMLInputElement>document.getElementById("bars")).value="0";
+      // this.player.currentTime=0;
+      
+      
+      image.src = "../assets/pause_line_icon.png";
+      image2.src = "../assets/controller_icons/bar_pause.png";
     } else {
       if (this.player.paused) {
         this.player.play();
+        image.src = "../assets/pause_line_icon.png";
+        image2.src = "../assets/controller_icons/bar_pause.png";
 
       } else {
         this.player.pause();
+        image.src = "../assets/play_line_icon.png";
+        image2.src = "../assets/controller_icons/bar_play.png";
       }
     }
   }
 
-  setVolume(){
-    // console.log("volume:",this.player.volume)    
-    // if(this.player.volume==0){
-    //   console.log("volume:",this.player.volume)
-    //   this.player.volume=1.0
-    // }else{
-    //   this.player.volume = 0;
-    //   console.log("volume:",this.player.volume)
-    // }
-    //  let vval = parseFloat(val);
-    //  if (isFinite(vval)) {
-    //   this.player.volume = vval;
-    // }
-    // console.log('Before: ' + this.player.volume);
-    // this.player.volume = vval / 100;
-    // console.log('After: ' + this.player.volume);
-    // this.player.volume = document.getElementById("volume1").value;
+  setVolume(ev:any){
+  this.player.volume = ev.target.value
+    console.log(ev.target.value)
   }
 
-  markLikedSongs(id:any){
-    this.playListsAPI.MarklikedSongs(id,true).subscribe((data:any)=>{
-      this.likedSongs = data
-      console.log(" this.likedSongs:",  this.likedSongs)
+  toggleMuteVolume(){
+
+    
+    if(this.player.muted==false && this.player.volume>0){
+      this.volume =(<HTMLInputElement>document.getElementById("volume1")).value;
+      console.log(this.volume);
+      (<HTMLInputElement>document.getElementById("volume1")).value = "0"
+      this.player.muted=true
+    }else{
+      if((<HTMLInputElement>document.getElementById("volume1")).value == "0"){
+
+        this.player.muted=false;
+        this.player.volume=this.volume;
+        console.log(this.player.volume);
+        (<HTMLInputElement>document.getElementById("volume1")).value=this.player.volume.toString()
+      }
+    }
+
+  }
+
+  toggleLikedSongs(id:any){
+    let likedImg = <HTMLInputElement>document.getElementById("likedImg");
+    this.playListsAPI.getLikeSongs().subscribe(data=>{
+      this.likedSongsArray = data
     })
+    for(let i=0;i<this.likedSongsArray.liked_tracks.length;i++){
+      if(this.likedSongsArray.liked_tracks[i].track_id == id){
+        this.playListsAPI.MarklikedSongs(id,false).subscribe((data:any)=>{
+          this.likedSong = data
+          console.log("removed:", id);
+          likedImg.src = "../assets/not_liked.png"
+        })
+        break;
+
+          
+      }else{
+        this.playListsAPI.MarklikedSongs(id,true).subscribe((data:any)=>{
+          this.likedSong = data
+          console.log(" added:",  id, this.selectedRow);
+          likedImg.src = "../assets/liked.png"
+          })
+          break;
+      }
+    //  console.log(this.likedSongsArray.liked_tracks[i])
+    }
+
+
+
+    }
+
+// test4(ev:any){
+//   ev.target.currentSrc = "../assets/liked.png"
+//   console.log(ev.target.currentSrc)
+// }
+
+  // UnMarkLikedSongs(id:any){
+  //   this.playListsAPI.MarklikedSongs(id,false).subscribe((data:any)=>{
+  //     this.likedSong = data
+  //     console.log("removed:", id)
+  //   })
+  // }
+
+  updateProgress(){
+    this.player.ontimeupdate = (event)=>{
+      this.seconds = Math.floor(this.player.currentTime % 60);
+      this.seconds = (this.seconds >= 10) ? this.seconds : "0" + this.seconds;
+     this.minutes = Math.floor(this.player.currentTime / 60)
+     this.minutes = (this.minutes >= 10) ? this.minutes : "0" + this.minutes;
+     this.currentTime = this.minutes + ":" + this.seconds;
+    //  this.cd.detectChanges()
+  //  }
+
+    // this.player.ontimeupdate = () => {
+      
+    //   this.playbackPosition = this.player.currentTime;
+    //   // console.log(" this.playbackPosition",  this.playbackPosition)
+    // }
+  }
+  }
+  setProgress(ev:any){
+    // this.newPosition = this.player.ontimeupdate
+    // this.newPosition = ev.target.value;
+    // this.player.currentTime = this.newPosition
+    // this.player.currentTime =parseInt((<HTMLInputElement>document.getElementById("bars")).value);
+    // (<HTMLInputElement>document.getElementById("bars")).value = ev.target.value;
+    // this.player.currentTime =  parseInt((<HTMLInputElement>document.getElementById("bars")).value)
+    // console.log(" this.newPosition:",  this.player.currentTime)
+    this.selectedSong.currentTime=ev.target.value;
+    console.log( "this.selectedSong.currentTime:",this.selectedSong.currentTime);
+    (<HTMLInputElement>document.getElementById("bars")).value=this.selectedSong.currentTime
+    console.log((<HTMLInputElement>document.getElementById("bars")))
+    this.player.currentTime =parseInt(ev.target.value)
+    // (<HTMLInputElement>document.getElementById("bars")).value = ev.target.value
+    console.log( "his.player.currentTime:",this.player.currentTime)
+  }
+
+  setSeekTo(ev:any){
+    // (<HTMLInputElement>document.getElementById("bars")).value=ev.target.value;
+    // console.log( (<HTMLInputElement>document.getElementById("bars")).value);
+    // this.player.currentTime = parseInt((<HTMLInputElement>document.getElementById("bars")).value)
+    // this.player.ontimeupdate=console.log(ev)
+  }
+  test3(){
+    console.log(this.player.currentTime)
   }
 
 }

@@ -79,16 +79,20 @@ export class PlayListsService {
     const token = "1072694e-6a8b-4973-9cd0-96ac1ee6e4a2";
     let headers = new HttpHeaders({
       "Content-Type": "application/json",
-      "user-access-token": token,
+      "user-access-token":token
       
     });
 
     const httpOptions = {
       headers: headers
     };
-    return this.http.post(`https://api.sprintt.co/spotify/liked_tracks/${id}?status=${status}`,httpOptions);
- 
+    return this.http.post(`https://api.sprintt.co/spotify/liked_tracks/${id}?status=${status}`,{},httpOptions);
   }
+
+  // const headers = new Headers({
+  //   'Content-Type': 'application/json',
+  //   'Authorization': `Bearer ${auth_token}`
+  // });
 
   getLikeSongs(){
     const token = "1072694e-6a8b-4973-9cd0-96ac1ee6e4a2";
