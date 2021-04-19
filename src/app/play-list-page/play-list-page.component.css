@@ -156,6 +156,7 @@ th {
 
 .playBtn {
     visibility: hidden;
+    content: url("/assets/play_line_icon.png");
 }
 
 .tableWrapper table tr:hover .playBtn {
@@ -325,6 +326,22 @@ input[type='range']::-webkit-slider-thumb {
 .selected {
     background: rgba(29, 185, 84, 0.2) !important;
     /* color: white; */
+}
+
+.selected .pauseBtn {
+    content: url("/assets/pause_line_icon.png");
+    visibility: visible;
+    width: 19.98px;
+    height: 20px;
+    padding-top: 3px;
+}
+
+.selected .playBtn {
+    content: url("/assets/play_line_icon.png");
+    visibility: visible;
+    width: 19.98px;
+    height: 20px;
+    padding-top: 3px;
 }
 
 .showBtn {

@@ -27,10 +27,13 @@
                 <tbody>
                     <!-- | search:searchTerm -->
 
-                    <tr *ngFor="let song of playListSongs?.tracks | search:searchTerm; let i = index;" [class.selected]="i==selectedRow">
+                    <tr *ngFor="let song of playListSongs?.tracks | search:searchTerm; let i = index;" [class.selected]="i==selectedRow" id="selectttt">
                         <td>
-                            <img src="../assets/play_line_icon.png" class="playBtn" (click)="togglePlaystateSong(song.track_id);getSongInfo(song);setClickedRow(i)" id="imgClickAndChange">
+                            <img src="" class="playBtn" (click)="togglePlaystateSong(song.track_id,i);getSongInfo(song);setClickedRow(i)" id="imgClickAndChange">
                         </td>
+                        <!-- <td *ngIf="song.playing">
+                            <img src="../assets/pause_line_icon.png" class="pauseBtn" (click)="togglePlaystateSong(song.track_id,i);getSongInfo(song);setClickedRow(i)" id="imgClickAndChange">
+                        </td> -->
                         <!-- <img class="playBtn" src="..\assets\play_line_icon.png"> -->
                         <td><img src="..\assets\not_liked.png" id="likedImg" (click)="toggleLikedSongs(song.track_id);setClickedRow(i)" style="cursor:pointer"></td>
                         <td> {{song.name}}</td>
@@ -70,7 +73,7 @@
     </div>
     <div class="playBarButtons">
         <img src="../assets/controller_icons/bar_prev.png" (click)="playPreviousSong()">
-        <img src="../assets/controller_icons/bar_play.png" id="imgClickAndChange2" (click)="changeImg2(); togglePlaystateSong(selectedSong.track_id)">
+        <img src="../assets/controller_icons/bar_play.png" id="imgClickAndChange2" (click)="changeImg2(); togglePlaystateSong(selectedSong.track_id,selectedRow)">
         <img src="../assets/controller_icons/bar_next.png" (click)="playNextSong();">
 
     </div>

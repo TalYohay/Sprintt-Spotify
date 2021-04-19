@@ -64,6 +64,7 @@ this.playListsAPI.getLikeSongs().subscribe(data=>{
   this.likedSongsArray = data
   console.log("this.likedSongsArray:",this.likedSongsArray)
 })
+this.checkForLikedSongs()
   }
   
 
@@ -140,8 +141,19 @@ this.playListsAPI.getLikeSongs().subscribe(data=>{
 
   setClickedRow(index: any) {
     this.selectedRow = index;
-    console.log("this.selectedRow index:", this.selectedRow);
-  }
+    // if(this.player.paused && this.selectedRow==index){
+    //   // console.log("song is paused")
+    //   // this.playListSongs.tracks[this.selectedRow].src="../assets/pause_line_icon.png"
+    //   let image = <HTMLInputElement>document.getElementById("imgClickAndChange");
+      
+    //   image.src = "../assets/pause_line_icon.png";
+      // image.classList.remove("playBtn");
+      // image.classList.remove("pauseBtn");
+      // element.classList.remove("mystyle");
+    }
+    // this.selectedRow.isSelected=true
+    // console.log("this.selectedRow index:", this.selectedRow);
+  // }
 
   playNextSong(){
   
@@ -187,9 +199,9 @@ this.playListsAPI.getLikeSongs().subscribe(data=>{
   }
 
 
-  togglePlaystateSong(id: number) {
+  togglePlaystateSong(id: number,index:number) {
 
-    let image = <HTMLInputElement>document.getElementById("imgClickAndChange");
+    // let image = <HTMLInputElement>document.getElementById("imgClickAndChange");
     let image2 = <HTMLInputElement>(
       document.getElementById("imgClickAndChange2"));
      
@@ -199,21 +211,21 @@ this.playListsAPI.getLikeSongs().subscribe(data=>{
       this.player.src = songUrl;
       this.player.load();
       this.player.play();
+      console.log("row's index:", index);
       // (<HTMLInputElement>document.getElementById("bars")).value="0";
       // this.player.currentTime=0;
       
-      
-      image.src = "../assets/pause_line_icon.png";
+      // image.src = "../assets/pause_line_icon.png";
       image2.src = "../assets/controller_icons/bar_pause.png";
     } else {
       if (this.player.paused) {
         this.player.play();
-        image.src = "../assets/pause_line_icon.png";
+        // image.src = "../assets/pause_line_icon.png";
         image2.src = "../assets/controller_icons/bar_pause.png";
 
       } else {
         this.player.pause();
-        image.src = "../assets/play_line_icon.png";
+        // image.src = "../assets/play_line_icon.png";
         image2.src = "../assets/controller_icons/bar_play.png";
       }
     }
@@ -244,6 +256,19 @@ this.playListsAPI.getLikeSongs().subscribe(data=>{
 
   }
 
+checkForLikedSongs(){
+  this.playListsAPI.getLikeSongs().subscribe(data=>{
+    this.likedSongsArray = data
+  })
+  for(let i=0;i<this.likedSongsArray.liked_tracks.length;i++){
+    // if(this.likedSongsArray.liked_tracks[i].is_liked==1){
+    //   console.log( this.likedSongsArray)
+    // }
+    console.log( this.likedSongsArray)
+  }
+}
+
+
   toggleLikedSongs(id:any){
     let likedImg = <HTMLInputElement>document.getElementById("likedImg");
     this.playListsAPI.getLikeSongs().subscribe(data=>{
@@ -253,7 +278,7 @@ this.playListsAPI.getLikeSongs().subscribe(data=>{
       if(this.likedSongsArray.liked_tracks[i].track_id == id){
         this.playListsAPI.MarklikedSongs(id,false).subscribe((data:any)=>{
           this.likedSong = data
-          console.log("removed:", id);
+          console.log("removed:", id, this.selectedRow);
           likedImg.src = "../assets/not_liked.png"
         })
         break;
@@ -269,9 +294,6 @@ this.playListsAPI.getLikeSongs().subscribe(data=>{
       }
     //  console.log(this.likedSongsArray.liked_tracks[i])
     }
-
-
-
     }
 
 // test4(ev:any){
