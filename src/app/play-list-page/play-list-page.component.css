@@ -157,6 +157,12 @@ th {
 .playBtn {
     visibility: hidden;
     content: url("/assets/play_line_icon.png");
+    /* content: url("/assets/play_line_icon.png"); */
+}
+
+.pauseBtn {
+    visibility: visible;
+    content: url("/assets/pause_line_icon.png");
 }
 
 .tableWrapper table tr:hover .playBtn {
@@ -334,6 +340,7 @@ input[type='range']::-webkit-slider-thumb {
     width: 19.98px;
     height: 20px;
     padding-top: 3px;
+    cursor: pointer;
 }
 
 .selected .playBtn {

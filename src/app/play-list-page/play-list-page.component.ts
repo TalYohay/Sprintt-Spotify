@@ -41,7 +41,7 @@ export class PlayListPageComponent implements OnInit {
   newPosition: any;
   bla:any
   likedSongsArray:any=[]
-
+    isPlaying:boolean=false
 
   ngOnInit(): void {
     this.playListId = this.actRoute.snapshot.params["id"];
@@ -141,6 +141,7 @@ this.checkForLikedSongs()
 
   setClickedRow(index: any) {
     this.selectedRow = index;
+
     // if(this.player.paused && this.selectedRow==index){
     //   // console.log("song is paused")
     //   // this.playListSongs.tracks[this.selectedRow].src="../assets/pause_line_icon.png"
@@ -201,7 +202,7 @@ this.checkForLikedSongs()
 
   togglePlaystateSong(id: number,index:number) {
 
-    // let image = <HTMLInputElement>document.getElementById("imgClickAndChange");
+    let image = <HTMLInputElement>document.getElementById("imgClickAndChange");
     let image2 = <HTMLInputElement>(
       document.getElementById("imgClickAndChange2"));
      
@@ -212,6 +213,10 @@ this.checkForLikedSongs()
       this.player.load();
       this.player.play();
       console.log("row's index:", index);
+      this.isPlaying=true;
+          //   image.src = "../assets/pause_line_icon.png";
+      // image.classList.remove("playBtn");
+      // image.classList.add("pauseBtn");
       // (<HTMLInputElement>document.getElementById("bars")).value="0";
       // this.player.currentTime=0;
       
@@ -219,14 +224,20 @@ this.checkForLikedSongs()
       image2.src = "../assets/controller_icons/bar_pause.png";
     } else {
       if (this.player.paused) {
+        this.isPlaying=true;
         this.player.play();
         // image.src = "../assets/pause_line_icon.png";
         image2.src = "../assets/controller_icons/bar_pause.png";
+        // image.classList.remove("playBtn");
+        // image.classList.add("pauseBtn");
 
       } else {
         this.player.pause();
+        this.isPlaying=false;
         // image.src = "../assets/play_line_icon.png";
         image2.src = "../assets/controller_icons/bar_play.png";
+        image.classList.add("playBtn");
+        image.classList.remove("pauseBtn");
       }
     }
   }
