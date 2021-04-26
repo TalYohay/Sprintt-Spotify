@@ -33,8 +33,11 @@
                             <img src="../assets/pause_line_icon.png" class="pauseBtn" (click)="togglePlaystateSong(song.track_id,i);getSongInfo(song);setClickedRow(i)" id="imgClickAndChange" />
                         </td>
                         <!-- <img class="playBtn" src="..\assets\play_line_icon.png"> -->
-                        <td>
-                            <img src="..\assets\not_liked.png" id="likedImg" (click)="toggleLikedSongs(song.track_id);setClickedRow(i)" style="cursor:pointer" />
+                        <td *ngIf="playListSongs.tracks[i].is_liked==0">
+                            <img src="..\assets\not_liked.png" id="likedImg" (click)="toggleLikedSongs(song.track_id);setLikedSong(i)" style="cursor:pointer" />
+                        </td>
+                        <td *ngIf="playListSongs.tracks[i].is_liked==1">
+                            <img src="..\assets\liked.png" id="likedImg" (click)="toggleLikedSongs(song.track_id);setLikedSong(i)" style="cursor:pointer" />
                         </td>
                         <td>{{song.name}}</td>
                         <td>{{song.artists_names}}</td>
@@ -73,7 +76,7 @@
         <!-- <div *ngIf="currentTime"> -->
         <div class="timePassed">{{currentTime}}</div>
         <!-- </div> -->
-        <input type="range" id="bars" class="bar songDuration" [value]="player.currentTime" min="0" max="{{player.duration}}" (input)="setSeekTo($event)" />
+        <input type="range" id="bars" class="bar songDuration" [value]="player.currentTime" min="0" max="{{player.duration}}" />
 
         <!-- <div class="bar" (click)="setProgress($event)"></div> -->
         <div class="songDuration">{{selectedSong.duration | date: 'mm:ss'}}</div>

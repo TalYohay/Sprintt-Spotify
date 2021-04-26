@@ -24,6 +24,7 @@ export class PlayListPageComponent implements OnInit {
   selectedSong: any = {};
   image_tracker: any = "notLiked";
   selectedRow: any;
+  selectedLikedSongIndex:any;
   nextSong:any;
   previousSong:any;
   volume:any;
@@ -41,25 +42,21 @@ export class PlayListPageComponent implements OnInit {
   newPosition: any;
   bla:any
   likedSongsArray:any=[]
-    isPlaying:boolean=false
+  isPlaying:boolean=false
+  isLikedTrue:any= []
+  isLikedFalse:any = []
+  
 
   ngOnInit(): void {
     this.playListId = this.actRoute.snapshot.params["id"];
     console.log("Play list ID:", this.playListId);
-    
     this.getPlaylistSongs();
     this.combinAllAPI();
-  
     this.updateProgress()
-  //   this.player.onended = function() {
-  //     // Whatever you want to do when the audio ends.
-  //     this.playNextSong()
-  // }
   this.player.addEventListener("ended",()=>{
     this.playNextSong()
   });
-//   this.player.addEventListener("timeupdate",()=>{
-// this.test3()  })
+
 this.playListsAPI.getLikeSongs().subscribe(data=>{
   this.likedSongsArray = data
   console.log("this.likedSongsArray:",this.likedSongsArray)
@@ -73,6 +70,7 @@ this.checkForLikedSongs()
       this.playListSongs = data;
       console.log("playListSongs:",this.playListSongs);
       console.log("playListSongs:",this.playListSongs.tracks.length);
+
     });
   }
 
@@ -100,19 +98,6 @@ this.checkForLikedSongs()
   }
 
   changeImg2() {
-    // let image = <HTMLInputElement>document.getElementById("imgClickAndChange");
-    // let image2 = <HTMLInputElement>(
-    //   document.getElementById("imgClickAndChange2")
-    // );
-    // if (this.image_tracker == "play") {
-    //   image.src = "../assets/pause_line_icon.png";
-    //   image2.src = "../assets/controller_icons/bar_pause.png";
-    //   this.image_tracker = "pause";
-    // } else {
-    //   image.src = "../assets/play_line_icon.png";
-    //   image2.src = "../assets/controller_icons/bar_play.png";
-    //   this.image_tracker = "play";
-    // }
     let image = <HTMLInputElement>document.getElementById("imgClickAndChange");
     let image2 = <HTMLInputElement>(document.getElementById("imgClickAndChange2"));
     if(this.player.paused){
@@ -124,38 +109,17 @@ this.checkForLikedSongs()
     }
   }
 
-  changeLikedImg(id:any){
-    // let likedImg = <HTMLInputElement>document.getElementById("likedImg");
-    // if(this.image_tracker=="notLiked"){
-    //   likedImg.src = "../assets/liked.png"
-    //   this.image_tracker="liked"
-    //   console.log(this.image_tracker)
-      
-    // }else{
-    //   if(this.image_tracker=="liked"){
-    //     likedImg.src="../assets/not_liked.png"
-    //   }
-    // }
-    console.log(id)
-  }
-
   setClickedRow(index: any) {
     this.selectedRow = index;
+  }
 
-    // if(this.player.paused && this.selectedRow==index){
-    //   // console.log("song is paused")
-    //   // this.playListSongs.tracks[this.selectedRow].src="../assets/pause_line_icon.png"
-    //   let image = <HTMLInputElement>document.getElementById("imgClickAndChange");
-      
-    //   image.src = "../assets/pause_line_icon.png";
-      // image.classList.remove("playBtn");
-      // image.classList.remove("pauseBtn");
-      // element.classList.remove("mystyle");
-    }
-    // this.selectedRow.isSelected=true
-    // console.log("this.selectedRow index:", this.selectedRow);
-  // }
+  setLikedSong(index:any){
+    this.selectedLikedSongIndex = index;
+    console.log(this.selectedLikedSongIndex)
+  }
 
+  
+    
   playNextSong(){
   
     
@@ -214,27 +178,18 @@ this.checkForLikedSongs()
       this.player.play();
       console.log("row's index:", index);
       this.isPlaying=true;
-          //   image.src = "../assets/pause_line_icon.png";
-      // image.classList.remove("playBtn");
-      // image.classList.add("pauseBtn");
-      // (<HTMLInputElement>document.getElementById("bars")).value="0";
-      // this.player.currentTime=0;
-      
-      // image.src = "../assets/pause_line_icon.png";
       image2.src = "../assets/controller_icons/bar_pause.png";
     } else {
       if (this.player.paused) {
         this.isPlaying=true;
         this.player.play();
-        // image.src = "../assets/pause_line_icon.png";
+
         image2.src = "../assets/controller_icons/bar_pause.png";
-        // image.classList.remove("playBtn");
-        // image.classList.add("pauseBtn");
+
 
       } else {
         this.player.pause();
         this.isPlaying=false;
-        // image.src = "../assets/play_line_icon.png";
         image2.src = "../assets/controller_icons/bar_play.png";
         image.classList.add("playBtn");
         image.classList.remove("pauseBtn");
@@ -281,43 +236,54 @@ checkForLikedSongs(){
 
 
   toggleLikedSongs(id:any){
-    let likedImg = <HTMLInputElement>document.getElementById("likedImg");
     this.playListsAPI.getLikeSongs().subscribe(data=>{
       this.likedSongsArray = data
     })
     for(let i=0;i<this.likedSongsArray.liked_tracks.length;i++){
       if(this.likedSongsArray.liked_tracks[i].track_id == id){
         this.playListsAPI.MarklikedSongs(id,false).subscribe((data:any)=>{
-          this.likedSong = data
-          console.log("removed:", id, this.selectedRow);
-          likedImg.src = "../assets/not_liked.png"
-        })
-        break;
+          console.log("data:",data)
+          this.likedSong = id
 
+          // this.selectedLikedSongIndex=false
           
+          console.log("removed:", this.likedSong, this.selectedLikedSongIndex);
+          // likedImg.src = "../assets/not_liked.png"
+        })
+        break; 
       }else{
+        
         this.playListsAPI.MarklikedSongs(id,true).subscribe((data:any)=>{
-          this.likedSong = data
-          console.log(" added:",  id, this.selectedRow);
-          likedImg.src = "../assets/liked.png"
+          console.log("data:",data)
+          this.likedSong = id
+          // this.selectedLikedSongIndex=true
+          console.log(" added:",  this.likedSong, this.selectedLikedSongIndex);
+          
+          // likedImg.src = "../assets/liked.png"
           })
           break;
       }
-    //  console.log(this.likedSongsArray.liked_tracks[i])
-    }
     }
 
-// test4(ev:any){
-//   ev.target.currentSrc = "../assets/liked.png"
-//   console.log(ev.target.currentSrc)
-// }
+    for(let i = 0; i<this.playListSongs.tracks.length;i++){
+      if(this.playListSongs.tracks[i].track_id == id && this.playListSongs.tracks[i].is_liked==0){
+        
+          this.playListSongs.tracks[i].is_liked = 1
+          console.log(this.playListSongs.tracks[i])
+          break;
+      }
+        else if( this.playListSongs.tracks[i].track_id == id && this.playListSongs.tracks[i].is_liked==1  ){
+          this.playListSongs.tracks[i].is_liked = 0
+          console.log(this.playListSongs.tracks[i])
+          break;
+        }
+      }
 
-  // UnMarkLikedSongs(id:any){
-  //   this.playListsAPI.MarklikedSongs(id,false).subscribe((data:any)=>{
-  //     this.likedSong = data
-  //     console.log("removed:", id)
-  //   })
-  // }
+    }
+
+
+    
+
 
   updateProgress(){
     this.player.ontimeupdate = (event)=>{
@@ -337,31 +303,14 @@ checkForLikedSongs(){
   }
   }
   setProgress(ev:any){
-    // this.newPosition = this.player.ontimeupdate
-    // this.newPosition = ev.target.value;
-    // this.player.currentTime = this.newPosition
-    // this.player.currentTime =parseInt((<HTMLInputElement>document.getElementById("bars")).value);
-    // (<HTMLInputElement>document.getElementById("bars")).value = ev.target.value;
-    // this.player.currentTime =  parseInt((<HTMLInputElement>document.getElementById("bars")).value)
-    // console.log(" this.newPosition:",  this.player.currentTime)
     this.selectedSong.currentTime=ev.target.value;
     console.log( "this.selectedSong.currentTime:",this.selectedSong.currentTime);
     (<HTMLInputElement>document.getElementById("bars")).value=this.selectedSong.currentTime
     console.log((<HTMLInputElement>document.getElementById("bars")))
     this.player.currentTime =parseInt(ev.target.value)
-    // (<HTMLInputElement>document.getElementById("bars")).value = ev.target.value
     console.log( "his.player.currentTime:",this.player.currentTime)
   }
 
-  setSeekTo(ev:any){
-    // (<HTMLInputElement>document.getElementById("bars")).value=ev.target.value;
-    // console.log( (<HTMLInputElement>document.getElementById("bars")).value);
-    // this.player.currentTime = parseInt((<HTMLInputElement>document.getElementById("bars")).value)
-    // this.player.ontimeupdate=console.log(ev)
-  }
-  test3(){
-    console.log(this.player.currentTime)
-  }
 
 }
 
