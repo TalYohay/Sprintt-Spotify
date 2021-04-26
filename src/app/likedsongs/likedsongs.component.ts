@@ -115,4 +115,18 @@ selectedRow:any;
       }
     }
   }
+
+
+  removeLikedSong(id:any){
+    this.playListsAPI.MarklikedSongs(id,false).subscribe((data:any)=>{
+      console.log("data:",data)
+      // this.likedSong = id
+
+      // this.selectedLikedSongIndex=false
+      
+      // console.log("removed:", this.likedSong, this.selectedLikedSongIndex);
+      // likedImg.src = "../assets/not_liked.png"
+    })
+
+  }
 }

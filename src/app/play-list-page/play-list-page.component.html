@@ -11,7 +11,7 @@
             <input type="text" placeholder="Filter" [(ngModel)]="searchTerm" [ngModelOptions]="{standalone: true}" />
         </div>
         <div class="tableWrapper">
-            <table *ngIf="playListSongs.tracks.length > 0">
+            <table *ngIf="playListSongs?.tracks.length > 0">
                 <thead>
                     <tr>
                         <th></th>
@@ -33,6 +33,7 @@
                             <img src="../assets/pause_line_icon.png" class="pauseBtn" (click)="togglePlaystateSong(song.track_id,i);getSongInfo(song);setClickedRow(i)" id="imgClickAndChange" />
                         </td>
                         <!-- <img class="playBtn" src="..\assets\play_line_icon.png"> -->
+
                         <td *ngIf="playListSongs.tracks[i].is_liked==0">
                             <img src="..\assets\not_liked.png" id="likedImg" (click)="toggleLikedSongs(song.track_id);setLikedSong(i)" style="cursor:pointer" />
                         </td>

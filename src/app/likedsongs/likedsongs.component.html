@@ -26,12 +26,12 @@
                 </thead>
                 <tbody>
                     <!-- | search:searchTerm -->
-
+                    <!-- *ngIf=" likedSongs.liked_tracks[i].is_liked==1" -->
                     <tr *ngFor="let song of likedSongs.liked_tracks | search:searchTerm; let i = index;" (click)="setClickedRow(i)" [class.selected]="i==selectedRow">
                         <td (click)="getSongInfo(song)"><img src="../assets/play_line_icon.png" class="playBtn" (click)="changeImg2(); togglePlaystateSong(song.track_id)" id="imgClickAndChange">
                         </td>
                         <!-- <img class="playBtn" src="..\assets\play_line_icon.png"> -->
-                        <td><img src="..\assets\liked.png"></td>
+                        <td><img src="..\assets\liked.png" (click)="removeLikedSong(song.track_id)"></td>
                         <td> {{song.name}}</td>
                         <td>{{song.artists_names}}</td>
                         <td>{{song.album_name}}</td>
