@@ -1,23 +1,15 @@
 .container {
     position: absolute;
-    /* width: 100vw; */
     right: 0;
-    /* height: 100vh; */
     left: 270px;
     top: 0;
-    /* background: #F1F7F1; */
-    /* Cover shadow */
-    /* box-shadow: 0px 4px 40px rgba(150, 168, 150, 0.3); */
 }
 
 .small-container {
-    /* width: 1500px; */
-    /* margin: auto; */
-    /* margin-left: 100px;
-    margin-right: 200px; */
     margin-left: 50px;
     margin-right: 100px;
-    margin-top: 100px;
+    margin-top: 200px;
+    /* position: relative; */
 }
 
 input[type="text"] {
@@ -34,44 +26,9 @@ input[type="text"] {
 
 .tableWrapper {
     overflow-y: scroll;
-    /* width: 100%;
-    height: 500px; */
-    /* overflow-x: auto; */
     width: 1190px;
     height: 500px;
 }
-
-
-/* .tableWrapper::-webkit-scrollbar-thumb {
-    background-color: #C1C1C1;
-    border-radius: 11px;
-    width: 10px;
-} */
-
-
-/* 
-.tableWrapper table::-webkit-scrollbar-thumb {
-    background: blue;
-    border-radius: 10px;
-} */
-
-
-/* .tableWrapper::-webkit-scrollbar {
-    background-color: transparent;
-    width: 10px;
-}
-
-
-
-.tableWrapper:hover::-webkit-scrollbar {
-    background-color: #C1C1C1;
-    border-radius: 11px;
-    scrollbar-width: none;
-    width: 10px;
-} */
-
-
-/* width */
 
 ::-webkit-scrollbar {
     width: 10px;
@@ -90,7 +47,6 @@ input[type="text"] {
  ::-webkit-scrollbar-thumb {
     background: #C1C1C1;
     border-radius: 11px;
-    /* background: transparent; */
 }
 
 
@@ -102,14 +58,11 @@ input[type="text"] {
 
 .tableWrapper table {
     border-collapse: collapse;
-    /* width: 1200px; */
-    /* height: 100px; */
     width: 100%
 }
 
 .tableWrapper table thead tr th {
     text-transform: uppercase;
-    /* border-bottom: 2px solid #646464; */
     box-shadow: inset 0 -2px 0 #646464;
     font-size: 22px;
     font-weight: 300;
@@ -144,9 +97,6 @@ th {
 
 .tableWrapper table tr:hover {
     background: rgba(29, 185, 84, 0.2);
-    /* border-right: 1px solid rgba(29, 185, 84, 0.2); */
-    /* border-radius: 10px; */
-    /* width: 1300px !important; */
 }
 
 .tableWrapper table tr td img {
@@ -171,15 +121,10 @@ th {
     cursor: pointer;
 }
 
-
-/* .playBtn {
-    width: 19.98px;
-    height: 20px;
-} */
-
 .error {
     position: absolute;
-    top: 200px;
+    top: 300px;
+    left: 20%
 }
 
 .playBar {
@@ -193,8 +138,6 @@ th {
 }
 
 .songInfo {
-    /* display: flex;
-    flex-direction: column; */
     margin-left: 40px;
 }
 
@@ -205,7 +148,6 @@ th {
 
 .songBox {
     display: flex;
-    /* justify-content: center; */
     align-items: center;
 }
 
@@ -261,16 +203,6 @@ input[type='range'].bar {
     margin-right: 10px;
 }
 
-
-/* .bar {
-    background: #C4C4C4;
-    border-radius: 11px;
-    width: 800px;
-    height: 5px;
-    margin-left: 10px;
-    margin-right: 10px;
-} */
-
 input[type='range'].bar::-webkit-slider-thumb {
     -webkit-appearance: none;
     background: #191414;
@@ -294,15 +226,6 @@ input[type='range'].bar::-webkit-slider-thumb {
     height: 20px;
     cursor: pointer;
 }
-
-
-/* .volumeBar {
-    background: #C4C4C4;
-    border-radius: 11px;
-    width: 80px;
-    height: 5px;
-    margin-left: 10px;
-} */
 
 input[type='range'] {
     border-radius: 11px;
@@ -331,7 +254,6 @@ input[type='range']::-webkit-slider-thumb {
 
 .selected {
     background: rgba(29, 185, 84, 0.2) !important;
-    /* color: white; */
 }
 
 .selected .pauseBtn {

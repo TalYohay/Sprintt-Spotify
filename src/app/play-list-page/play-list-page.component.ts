@@ -55,8 +55,8 @@ export class PlayListPageComponent implements OnInit {
       this.playNextSong();
     });
 
-  this.getLikedSongs()
-    this.checkForLikedSongs();
+  // this.getLikedSongs()
+
   }
 
   getPlaylistSongs() {
@@ -84,13 +84,13 @@ export class PlayListPageComponent implements OnInit {
     // }
   }
 
-getLikedSongs(){
-  this.playListsAPI.getLikeSongs().subscribe(data => {
-    this.likedSongsArray = data;
-    console.log("this.likedSongsArray:", this.likedSongsArray)
-    console.log("this.likedSongsArray.liked_tracks.length:",this.likedSongsArray.liked_tracks.length)
-  });
-}
+// getLikedSongs(){
+//   this.playListsAPI.getLikeSongs().subscribe(data => {
+//     this.likedSongsArray = data;
+//     console.log("this.likedSongsArray:", this.likedSongsArray)
+//     console.log("this.likedSongsArray.liked_tracks.length:",this.likedSongsArray.liked_tracks.length)
+//   });
+// }
 
   getSongInfo(song: any) {
     this.selectedSong = song;
@@ -214,17 +214,6 @@ getLikedSongs(){
     }
   }
 
-  checkForLikedSongs() {
-    this.playListsAPI.getLikeSongs().subscribe(data => {
-      this.likedSongsArray = data;
-    });
-    for (let i = 0; i < this.likedSongsArray.liked_tracks.length; i++) {
-      // if(this.likedSongsArray.liked_tracks[i].is_liked==1){
-      //   console.log( this.likedSongsArray)
-      // }
-      console.log(this.likedSongsArray);
-    }
-  }
 
   toggleLikedSongs(id: any) {
     for (let i = 0; i < this.playListSongs.tracks.length; i++) {
