@@ -113,4 +113,32 @@ export class PlayListsService {
     let stringToEncrypt = `${this.userToken}===${utcTime}`;
     return btoa(stringToEncrypt);
   }
+
+  getGenres(){
+    const token = "1072694e-6a8b-4973-9cd0-96ac1ee6e4a2";
+    let headers = new HttpHeaders({
+      "Content-Type": "application/json",
+      "user-access-token": token
+    });
+
+    const httpOptions = {
+      headers: headers
+    };
+    return this.http.get('https://api.sprintt.co/spotify/categories',httpOptions)
+  }
+
+  getGenrePlaylists(genre_id:any){
+    const token = "1072694e-6a8b-4973-9cd0-96ac1ee6e4a2";
+    let headers = new HttpHeaders({
+      "Content-Type": "application/json",
+      "user-access-token": token
+    });
+
+    const httpOptions = {
+      headers: headers
+    };
+    return this.http.get(`https://api.sprintt.co/spotify/category_playlists/${genre_id}`,httpOptions)
+  }
+
+  
 }

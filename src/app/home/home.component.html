@@ -1,31 +1,5 @@
 <div class="container">
     <div class="small-container">
-        <!-- <div *ngIf="RecentlyPlayedList.playlists > 0">
-            <div class="featuredPlaylists">
-                <p>Recently Played</p>
-            </div>
-
-
-            <div class="playListRow">
-
-                <div class="playListBox" *ngFor="let playLists of RecentlyPlayedList.playlists | paginate: {id:'first', itemsPerPage: 5, currentPage: p1 }">
-                    <a [routerLink]="['/', 'playlist', playLists.playlist_id]">
-                        <div class="playListImg">
-                            <img src="{{playLists.image_url}}">
-                        </div>
-                    </a>
-                    <div class="playListName">
-                        {{playLists.name}}
-                    </div>
-                    <div class="playListDesc">
-                        {{playLists.description}}
-                    </div>
-                </div>
-                <pagination-controls (pageChange)="p1 = $event" id="first" previousLabel="" nextLabel=""></pagination-controls>
-
-            </div>
-        </div> -->
-
         <div class="featuredPlaylists">
             <p>Featured Playlists</p>
         </div>

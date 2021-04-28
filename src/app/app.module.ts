@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { PlayListPageComponent } from './play-list-page/play-list-page.component';
 import { SearchPipe } from './pipes/search.pipe';
 import { FormsModule } from '@angular/forms';
+import { GenrePageComponent } from './genre-page/genre-page.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { FormsModule } from '@angular/forms';
     BrowseComponent,
     LikedsongsComponent,
     PlayListPageComponent,
-    SearchPipe
+    SearchPipe,
+    GenrePageComponent
   ],
   imports: [
     BrowserModule,

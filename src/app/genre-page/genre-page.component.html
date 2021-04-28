@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="banner" id="#imgcontainer">
+        <img src="{{matchedCatergory.image_url}}">
+        <div class="playListInfo">
+            <h1>{{matchedCatergory.category_name}}</h1>
+            <p>{{genrePlaylists.playlists.length}} Playlists</p>
+        </div>
+
+    </div>
+
+    <div class="small-container">
+        <div class="playlistRow">
+            <div class="playlistBox" *ngFor="let playlist of genrePlaylists.playlists">
+                <a [routerLink]="['/', 'playlist', playlist.playlist_id]">
+                    <div class="playlistImg">
+                        <img src="{{playlist.image_url}}">
+                    </div>
+                </a>
+                <div class="playlistName">
+                    {{playlist.name}}
+                </div>
+                <div class="playListDesc">
+                    {{playlist.description}}
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
