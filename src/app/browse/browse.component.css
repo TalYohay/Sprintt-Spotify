@@ -1,3 +1,23 @@
+.genreInfo {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+p {
+    text-align: center;
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 43px;
+    color: #FFFFFF;
+    text-transform: capitalize;
+    position: absolute;
+}
+
 .container {
     position: absolute;
     right: 0;
@@ -10,25 +30,20 @@ h1 {
     font-style: normal;
     font-weight: normal;
     font-size: 28px;
+    margin-left: 6%;
+    margin-bottom: 50px;
 }
 
 .small-container {
-    margin-left: 50px;
-    margin-right: 100px;
-    margin-top: 200px;
+    margin-top: 50px;
+}
+
+.row {
     position: relative;
     display: flex;
     flex-wrap: wrap;
-    /* align-items: center; */
     gap: 20px;
-}
-
-.genreInfo {
-    position: relative;
-    display: flex;
-    align-items: center;
     justify-content: center;
-    cursor: pointer;
 }
 
 p {

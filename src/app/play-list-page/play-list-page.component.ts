@@ -10,13 +10,16 @@ import { switchMap } from "rxjs/operators"; // RxJS v6
   styleUrls: ["./play-list-page.component.css"]
 })
 export class PlayListPageComponent implements OnInit {
+  
+ 
   constructor(
     public playListsAPI: PlayListsService,
     public actRoute: ActivatedRoute,
     public cd: ChangeDetectorRef
   ) {}
-
+  selectedPlaylist: any;
   playListId: any;
+  genrePlaylists: any = [];
   playListSongs: any = [];
   searchTerm: any;
   playlists3: any = [];
@@ -44,12 +47,16 @@ export class PlayListPageComponent implements OnInit {
   isPlaying: boolean = false;
   isLikedTrue: any = [];
   isLikedFalse: any = [];
+  test10:boolean = false;
 
   ngOnInit(): void {
     this.playListId = this.actRoute.snapshot.params["id"];
     console.log("Play list ID:", this.playListId);
+    this.getPlaylistInfo()
+    // this.getPlaylistInfo(this.ee);
+    this.getGenrePlaylists();
     this.getPlaylistSongs();
-    // this.combinAllAPI();
+    this.combinAllAPI();
     this.updateProgress();
     this.player.addEventListener("ended", () => {
       this.playNextSong();
@@ -65,6 +72,13 @@ export class PlayListPageComponent implements OnInit {
       console.log("playListSongs:", this.playListSongs);
       // console.log("playListSongs:", this.playListSongs..tracks.length);
     });
+  }
+
+  getGenrePlaylists(){
+    this.playListsAPI.getGenrePlaylists(this.playListId).subscribe(data=>{
+      this.genrePlaylists = data;
+      console.log(' this.genrePlaylists:',  this.genrePlaylists)
+    })
   }
 
   combinAllAPI() {
@@ -172,6 +186,7 @@ export class PlayListPageComponent implements OnInit {
       this.player.play();
       console.log("row's index:", index);
       this.isPlaying = true;
+      this.test10 = true;
       image2.src = "../assets/controller_icons/bar_pause.png";
     } else {
       if (this.player.paused) {
@@ -269,4 +284,11 @@ export class PlayListPageComponent implements OnInit {
     this.player.currentTime = parseInt(ev.target.value);
     console.log("his.player.currentTime:", this.player.currentTime);
   }
+
+  getPlaylistInfo(){
+    this.selectedPlaylist = this.playListsAPI.selectedPlaylist;
+    console.log("this.selectedPlaylist:", this.selectedPlaylist)
+  }
 }
+
+

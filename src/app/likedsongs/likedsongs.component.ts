@@ -176,7 +176,8 @@ selectedRow:any;
           console.log("added:", this.selectedLikedSongIndex);
         });
         break;
-      } else if (
+      }
+       else if (
         this.likedSongs.liked_tracks[i].track_id == id &&
         this.likedSongs.liked_tracks[i].is_liked == 1
       ) {

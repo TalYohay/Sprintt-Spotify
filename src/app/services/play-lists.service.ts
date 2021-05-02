@@ -8,6 +8,7 @@ export class PlayListsService {
   url = "http://api.sprintt.co/spotify";
   userToken = "1072694e-6a8b-4973-9cd0-96ac1ee6e4a2";
   reqAudio: any;
+  selectedPlaylist: any;
 
   constructor(public http: HttpClient) {}
 
@@ -140,5 +141,11 @@ export class PlayListsService {
     return this.http.get(`https://api.sprintt.co/spotify/category_playlists/${genre_id}`,httpOptions)
   }
 
+
+
+  // getSelectedPlayList(playlist:any){
+  //   this.selectedPlaylist = playlist;
+  //   console.log("this.selectedPlaylist:", this.selectedPlaylist)
+  // }
   
 }

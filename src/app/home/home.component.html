@@ -8,7 +8,7 @@
         <div class="playListRow">
 
             <div class="playListBox" *ngFor="let playList of FeaturedPlayLists.playlists | paginate: {id:'first', itemsPerPage: 5, currentPage: p1 }">
-                <a [routerLink]="['/', 'playlist', playList.playlist_id]">
+                <a [routerLink]="['/', 'playlist', playList.playlist_id]" (click)="getPlaylistInfo(playList)">
                     <div class="playListImg">
                         <img src="{{playList.image_url}}">
                     </div>
@@ -33,7 +33,7 @@
         <div class="playListRow">
 
             <div class="playListBox" *ngFor="let playList of FeaturedPlayLists.playlists | paginate: {id:'second', itemsPerPage: 5, currentPage: p2 }">
-                <a [routerLink]="['/', 'playlist', playList.playlist_id]">
+                <a [routerLink]="['/', 'playlist', playList.playlist_id]" (click)="getPlaylistInfo(playList)">
                     <div class="playListImg">
                         <img src="{{playList.image_url}}">
                     </div>
@@ -61,7 +61,7 @@
 
             <div class="playListBox" *ngFor="let playListtt of MoodPlayLists.playlists | paginate: {id:'third', itemsPerPage: 5, currentPage: p3 }">
 
-                <a [routerLink]="['/', 'playlist', playListtt.playlist_id]">
+                <a [routerLink]="['/', 'playlist', playListtt.playlist_id]" (click)="getPlaylistInfo(playListtt)">
                     <div class="playListImg">
                         <img src="{{playListtt.image_url}}">
                     </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter  } from '@angular/core';
 import { PlayListsService } from '../services/play-lists.service';
 import { ActivatedRoute, ParamMap, Router } from "@angular/router";
 import { map, filter} from 'rxjs/operators';
@@ -17,6 +17,9 @@ export class GenrePageComponent implements OnInit {
   genretId: any;
   genres:any= []
   matchedCatergory: any;
+  selectedPlaylist: any;
+  @Output() childMessageEvent = new EventEmitter<any>()
+
 
   constructor(public playListsAPI: PlayListsService, public actRoute: ActivatedRoute,) { }
 
@@ -47,7 +50,12 @@ export class GenrePageComponent implements OnInit {
       }
     })
 
-
     
+    
+  }
+
+  getPlaylistInfo(playlist:any){
+    this.playListsAPI.selectedPlaylist = playlist
+    console.log("playlist:", playlist)
   }
 }

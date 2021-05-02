@@ -1,14 +1,16 @@
 <div class="container">
-    <h1>Genres</h1>
-    <div class="small-container">
 
-        <div class="genresList" *ngFor="let genre of genresList.categories">
-            <a [routerLink]="['/', 'genre', genre.category_id]">
-                <div class="genreInfo">
-                    <img src="{{genre.image_url}}">
-                    <p>{{genre.category_name}}</p>
-                </div>
-            </a>
+    <div class="small-container">
+        <h1>Genres</h1>
+        <div class="row">
+            <div class="genresList" *ngFor="let genre of genresList.categories">
+                <a [routerLink]="['/', 'genre', genre.category_id]">
+                    <div class="genreInfo">
+                        <img src="{{genre.image_url}}">
+                        <p>{{genre.category_name}}</p>
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
 </div>

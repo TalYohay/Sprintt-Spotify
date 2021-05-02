@@ -1,5 +1,6 @@
 <div class="container">
     <div class="banner" id="#imgcontainer">
+        <!-- [ngStyle]="{'background-image':'url(' + matchedCatergory.image_url + ')'}" -->
         <img src="{{matchedCatergory.image_url}}">
         <div class="playListInfo">
             <h1>{{matchedCatergory.category_name}}</h1>
@@ -11,7 +12,7 @@
     <div class="small-container">
         <div class="playlistRow">
             <div class="playlistBox" *ngFor="let playlist of genrePlaylists.playlists">
-                <a [routerLink]="['/', 'playlist', playlist.playlist_id]">
+                <a [routerLink]="['/', 'playlist', playlist.playlist_id]" (click)="getPlaylistInfo(playlist)">
                     <div class="playlistImg">
                         <img src="{{playlist.image_url}}">
                     </div>

@@ -1,10 +1,20 @@
 <div class="container">
-    <div class="banner">
+    <div class="banner" id="#imgcontainer">
+        <img src="{{selectedPlaylist?.image_url}}">
         <div class="playListInfo">
-            <p>{{playListSongs.playlist_tracks}} Songs</p>
-            <p>{{playListSongs.playlist_duration}}</p>
+
+            <h1>{{selectedPlaylist?.name}}</h1>
+            <h3>{{selectedPlaylist?.description}}</h3>
+
+
+            <p id="tracks_length">{{playListSongs.playlist_tracks}} Songs</p>
+            <p id="tracks_duration">{{playListSongs.playlist_duration}}</p>
         </div>
     </div>
+
+
+
+
     <div class="small-container">
         <div class="filter">
             <i class="fa fa-search" style="color:#999;"></i>
@@ -56,9 +66,10 @@
 </div>
 
 <div class="playBar">
+
     <div class="songBox">
         <div class="playBarImg">
-            <img src="..\assets\liked_songs.jpg" />
+            <img src="{{selectedPlaylist?.image_url}}" />
         </div>
         <div class="songInfo">
             <div class="songName">
