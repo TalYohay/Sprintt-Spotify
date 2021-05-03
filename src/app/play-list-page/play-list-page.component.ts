@@ -135,6 +135,8 @@ export class PlayListPageComponent implements OnInit {
   }
 
   playNextSong() {
+    let image2 = <HTMLInputElement>(
+      document.getElementById("imgClickAndChange2"));
     console.log(this.selectedSong);
     this.nextSong = this.playListSongs.tracks[this.selectedRow + 1];
     console.log("next song:", this.nextSong.name);
@@ -148,13 +150,30 @@ export class PlayListPageComponent implements OnInit {
     this.player.src = songUrl;
     this.player.load();
     this.player.play();
+    image2.src = "../assets/controller_icons/bar_pause.png";
+    this.isPlaying = true;
+
     (<HTMLInputElement>document.getElementById("bars")).value = "0";
     this.selectedSong = this.nextSong;
+
+    if (this.player.paused) {
+      this.isPlaying = false;
+      this.player.pause();
+
+      image2.src = "../assets/controller_icons/bar_play.png";
+    } else {
+      this.player.play();
+      this.isPlaying = true;
+      image2.src = "../assets/controller_icons/bar_pause.png";
+      // image.classList.add("playBtn");
+      // image.classList.remove("pauseBtn");
+    }
   }
 
   playPreviousSong() {
+    let image2 = <HTMLInputElement>(
+      document.getElementById("imgClickAndChange2"));
     console.log(this.selectedSong);
-
     this.previousSong = this.playListSongs.tracks[this.selectedRow - 1];
     console.log("previous song:", this.previousSong.name);
 
@@ -170,10 +189,32 @@ export class PlayListPageComponent implements OnInit {
     this.player.play();
     (<HTMLInputElement>document.getElementById("bars")).value = "0";
     this.selectedSong = this.previousSong;
+    this.player.load();
+    this.player.play();
+    image2.src = "../assets/controller_icons/bar_pause.png";
+    this.isPlaying = true;
+
+    (<HTMLInputElement>document.getElementById("bars")).value = "0";
+    this.selectedSong = this.previousSong;
+
+    if (this.player.paused) {
+      this.isPlaying = false;
+      this.player.pause();
+
+      image2.src = "../assets/controller_icons/bar_play.png";
+    } else {
+      this.player.play();
+      this.isPlaying = true;
+      image2.src = "../assets/controller_icons/bar_pause.png";
+      // image.classList.add("playBtn");
+      // image.classList.remove("pauseBtn");
+    }
+
+    
   }
 
   togglePlaystateSong(id: number, index: number) {
-    let image = <HTMLInputElement>document.getElementById("imgClickAndChange");
+    // let image = <HTMLInputElement>document.getElementById("imgClickAndChange");
     let image2 = <HTMLInputElement>(
       document.getElementById("imgClickAndChange2")
     );
@@ -198,8 +239,8 @@ export class PlayListPageComponent implements OnInit {
         this.player.pause();
         this.isPlaying = false;
         image2.src = "../assets/controller_icons/bar_play.png";
-        image.classList.add("playBtn");
-        image.classList.remove("pauseBtn");
+        // image.classList.add("playBtn");
+        // image.classList.remove("pauseBtn");
       }
     }
   }

@@ -71,8 +71,10 @@ selectedRow:any;
   }
 
   playNextSong() {
+    let image2 = <HTMLInputElement>(
+      document.getElementById("imgClickAndChange2"));
     console.log(this.selectedSong);
-    this.nextSong = this.playListSongs.tracks[this.selectedRow + 1];
+    this.nextSong = this.likedSongs.liked_tracks[this.selectedRow +1]
     console.log("next song:", this.nextSong.name);
     this.selectedRow = this.selectedRow + 1;
     console.log(" NEW this.selectedRow index:", this.selectedRow);
@@ -84,14 +86,32 @@ selectedRow:any;
     this.player.src = songUrl;
     this.player.load();
     this.player.play();
+    image2.src = "../assets/controller_icons/bar_pause.png";
+    this.isPlaying = true;
+
     (<HTMLInputElement>document.getElementById("bars")).value = "0";
     this.selectedSong = this.nextSong;
+
+    if (this.player.paused) {
+      this.isPlaying = false;
+      this.player.pause();
+
+      image2.src = "../assets/controller_icons/bar_play.png";
+    } else {
+      this.player.play();
+      this.isPlaying = true;
+      image2.src = "../assets/controller_icons/bar_pause.png";
+      // image.classList.add("playBtn");
+      // image.classList.remove("pauseBtn");
+    }
   }
 
-  playPreviousSong() {
-    console.log(this.selectedSong);
 
-    this.previousSong = this.playListSongs.tracks[this.selectedRow - 1];
+  playPreviousSong() {
+    let image2 = <HTMLInputElement>(
+      document.getElementById("imgClickAndChange2"));
+    console.log(this.selectedSong);
+    this.previousSong = this.likedSongs.liked_tracks[this.selectedRow -1]
     console.log("previous song:", this.previousSong.name);
 
     this.selectedRow = this.selectedRow - 1;
@@ -106,10 +126,32 @@ selectedRow:any;
     this.player.play();
     (<HTMLInputElement>document.getElementById("bars")).value = "0";
     this.selectedSong = this.previousSong;
+    this.player.load();
+    this.player.play();
+    image2.src = "../assets/controller_icons/bar_pause.png";
+    this.isPlaying = true;
+
+    (<HTMLInputElement>document.getElementById("bars")).value = "0";
+    this.selectedSong = this.previousSong;
+
+    if (this.player.paused) {
+      this.isPlaying = false;
+      this.player.pause();
+
+      image2.src = "../assets/controller_icons/bar_play.png";
+    } else {
+      this.player.play();
+      this.isPlaying = true;
+      image2.src = "../assets/controller_icons/bar_pause.png";
+      // image.classList.add("playBtn");
+      // image.classList.remove("pauseBtn");
+    }
+
+    
   }
 
   togglePlaystateSong(id: number, index: number) {
-    let image = <HTMLInputElement>document.getElementById("imgClickAndChange");
+    // let image = <HTMLInputElement>document.getElementById("imgClickAndChange");
     let image2 = <HTMLInputElement>(
       document.getElementById("imgClickAndChange2")
     );
@@ -122,6 +164,7 @@ selectedRow:any;
       this.player.play();
       console.log("row's index:", index);
       this.isPlaying = true;
+      // this.test10 = true;
       image2.src = "../assets/controller_icons/bar_pause.png";
     } else {
       if (this.player.paused) {
@@ -133,8 +176,8 @@ selectedRow:any;
         this.player.pause();
         this.isPlaying = false;
         image2.src = "../assets/controller_icons/bar_play.png";
-        image.classList.add("playBtn");
-        image.classList.remove("pauseBtn");
+        // image.classList.add("playBtn");
+        // image.classList.remove("pauseBtn");
       }
     }
   }

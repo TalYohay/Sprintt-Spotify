@@ -1,5 +1,6 @@
 <div class="container">
     <div class="banner" id="#imgcontainer">
+        <!-- [ngStyle]="{'background-image':'url(' + selectedPlaylist?.image_url + ')'}" -->
         <img src="{{selectedPlaylist?.image_url}}">
         <div class="playListInfo">
 
@@ -68,7 +69,7 @@
 <div class="playBar">
 
     <div class="songBox">
-        <div class="playBarImg">
+        <div class="playBarImg" *ngIf="selectedSong.name">
             <img src="{{selectedPlaylist?.image_url}}" />
         </div>
         <div class="songInfo">

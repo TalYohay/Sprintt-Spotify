@@ -1,6 +1,6 @@
 <div class="container">
     <div class="small-container">
-        <div class="featuredPlaylists">
+        <!-- <div class="featuredPlaylists">
             <p>Featured Playlists</p>
         </div>
 
@@ -8,6 +8,31 @@
         <div class="playListRow">
 
             <div class="playListBox" *ngFor="let playList of FeaturedPlayLists.playlists | paginate: {id:'first', itemsPerPage: 5, currentPage: p1 }">
+                <a [routerLink]="['/', 'playlist', playList.playlist_id]" (click)="getPlaylistInfo(playList)">
+                    <div class="playListImg">
+                        <img src="{{playList.image_url}}">
+                    </div>
+                </a>
+                <div class="playListName">
+                    {{playList.name}}
+                </div>
+                <div class="playListDesc">
+                    {{playList.description}}
+                </div>
+            </div>
+            <div class="firstPagination">
+                <pagination-controls (pageChange)="p1=$event" id="first" previousLabel=" " nextLabel=" "></pagination-controls>
+            </div>
+        </div> -->
+
+        <div class="featuredPlaylists">
+            <p>Recently Played</p>
+        </div>
+
+
+        <div class="playListRow">
+
+            <div class="playListBox" *ngFor="let playList of RecentlyPlayedList.playlists | paginate: {id:'first', itemsPerPage: 5, currentPage: p1 }">
                 <a [routerLink]="['/', 'playlist', playList.playlist_id]" (click)="getPlaylistInfo(playList)">
                     <div class="playListImg">
                         <img src="{{playList.image_url}}">
