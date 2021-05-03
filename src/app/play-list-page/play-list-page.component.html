@@ -8,8 +8,8 @@
             <h3>{{selectedPlaylist?.description}}</h3>
 
 
-            <p id="tracks_length">{{playListSongs.playlist_tracks}} Songs</p>
-            <p id="tracks_duration">{{playListSongs.playlist_duration}}</p>
+            <p id="tracks_length">{{playListSongs?.playlist_tracks}} Songs</p>
+            <p id="tracks_duration">{{playListSongs?.playlist_duration}}</p>
         </div>
     </div>
 
@@ -21,7 +21,7 @@
             <i class="fa fa-search" style="color:#999;"></i>
             <input type="text" placeholder="Filter" [(ngModel)]="searchTerm" [ngModelOptions]="{standalone: true}" />
         </div>
-        <div class="tableWrapper" *ngIf="(playListSongs.tracks | search:searchTerm).length > 0">
+        <div class="tableWrapper" *ngIf="(playListSongs?.tracks | search:searchTerm).length > 0">
             <table>
 
                 <thead>
