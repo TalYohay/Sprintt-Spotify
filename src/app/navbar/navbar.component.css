@@ -99,7 +99,7 @@ li a.likedsongs span img {
     height: 22.4px;
     left: 52px;
     top: 266.78px;
-    transform: rotate(-45deg);
+    /* transform: rotate(-45deg); */
     margin-right: 10px;
 }
 

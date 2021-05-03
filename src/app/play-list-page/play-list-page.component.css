@@ -236,11 +236,12 @@ input[type='range'] {
     width: 80px;
     outline: none;
     margin-left: 10px;
+    pointer-events: none;
 }
 
 input[type='range']::-webkit-slider-runnable-track {
     -webkit-appearance: none;
-    cursor: pointer;
+    /* pointer-events: none; */
 }
 
 input[type='range']::-webkit-slider-thumb {
