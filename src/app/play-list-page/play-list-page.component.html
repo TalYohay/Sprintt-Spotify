@@ -8,8 +8,8 @@
             <h3>{{selectedPlaylist?.description}}</h3>
 
 
-            <p id="tracks_length">{{playListSongs?.playlist_tracks}} Songs</p>
-            <p id="tracks_duration">{{playListSongs?.playlist_duration}}</p>
+            <p id="tracks_length">{{playListsAPI.playListSongs?.playlist_tracks}} Songs</p>
+            <p id="tracks_duration">{{playListsAPI.playListSongs?.playlist_duration}}</p>
         </div>
     </div>
 
@@ -21,7 +21,7 @@
             <i class="fa fa-search" style="color:#999;"></i>
             <input type="text" placeholder="Filter" [(ngModel)]="searchTerm" [ngModelOptions]="{standalone: true}" />
         </div>
-        <div class="tableWrapper" *ngIf="(playListSongs?.tracks | search:searchTerm).length > 0">
+        <div class="tableWrapper" *ngIf="(playListsAPI.playListSongs?.tracks | search:searchTerm).length > 0">
             <table>
 
                 <thead>
@@ -37,19 +37,19 @@
                 <tbody>
                     <!-- | search:searchTerm -->
 
-                    <tr *ngFor="let song of playListSongs?.tracks | search:searchTerm; let i = index;" [class.selected]="i==selectedRow" id="selectttt">
-                        <td *ngIf="!isPlaying || i !== selectedRow">
+                    <tr *ngFor="let song of playListsAPI.playListSongs?.tracks | search:searchTerm; let i = index;" [class.selected]="i==playListsAPI.selectedRow" id="selectttt">
+                        <td *ngIf="!playListsAPI.isPlaying || i !== playListsAPI.selectedRow">
                             <img src="../assets/play_line_icon.png" class="playBtn" (click)="togglePlaystateSong(song.track_id,i);getSongInfo(song);setClickedRow(i)" id="imgClickAndChange" />
                         </td>
-                        <td *ngIf="isPlaying && i === selectedRow">
+                        <td *ngIf="playListsAPI.isPlaying && i === playListsAPI.selectedRow">
                             <img src="../assets/pause_line_icon.png" class="pauseBtn" (click)="togglePlaystateSong(song.track_id,i);getSongInfo(song);setClickedRow(i)" id="imgClickAndChange" />
                         </td>
                         <!-- <img class="playBtn" src="..\assets\play_line_icon.png"> -->
 
-                        <td *ngIf="playListSongs.tracks[i].is_liked==0">
+                        <td *ngIf="playListsAPI.playListSongs?.tracks[i].is_liked==0">
                             <img src="..\assets\not_liked.png" id="likedImg" (click)="toggleLikedSongs(song.track_id);setLikedSong(i)" style="cursor:pointer" />
                         </td>
-                        <td *ngIf="playListSongs.tracks[i].is_liked==1">
+                        <td *ngIf="playListsAPI.playListSongs?.tracks[i].is_liked==1">
                             <img src="..\assets\liked.png" id="likedImg" (click)="toggleLikedSongs(song.track_id);setLikedSong(i)" style="cursor:pointer" />
                         </td>
                         <td>{{song.name}}</td>
@@ -61,15 +61,15 @@
             </table>
         </div>
     </div>
-    <div *ngIf="(playListSongs.tracks | search:searchTerm).length === 0">
+    <div *ngIf="(playListsAPI.playListSongs?.tracks | search:searchTerm).length === 0">
         <h1 class="error">No Songs Found!</h1>
     </div>
 </div>
 
-<div class="playBar">
+<!-- <div class="playBar">
 
     <div class="songBox">
-        <div class="playBarImg" *ngIf="selectedSong.name">
+        <div class="playBarImg">
             <img src="{{selectedPlaylist?.image_url}}" />
         </div>
         <div class="songInfo">
@@ -87,17 +87,14 @@
         <img src="../assets/controller_icons/bar_next.png" (click)="playNextSong();" />
     </div>
     <div class="progressBar">
-        <!-- <div *ngIf="currentTime"> -->
         <div class="timePassed">{{currentTime}}</div>
-        <!-- </div> -->
         <input type="range" id="bars" class="bar songDuration" [value]="player.currentTime" min="0" max="{{player.duration}}" />
 
-        <!-- <div class="bar" (click)="setProgress($event)"></div> -->
         <div class="songDuration">{{selectedSong.duration | date: 'mm:ss'}}</div>
-        <!-- <div class="songDuration">{{currentTime}}</div> -->
+
     </div>
     <div class="volume">
         <img src="../assets/volume.png" (click)="toggleMuteVolume()" />
         <input class="volumeBar" id="volume1" type="range" min="0" max="1" step="0.01" value="0.5" (input)="setVolume($event)" />
     </div>
-</div>
+</div> -->

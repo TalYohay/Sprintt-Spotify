@@ -1,0 +1,136 @@
+.playBar {
+    position: fixed;
+    width: 100%;
+    height: 100px;
+    left: 0px;
+    bottom: 0px;
+    background: linear-gradient(0deg, #FFFFFF, #FFFFFF), #F1F1F1;
+    display: flex;
+    z-index: 1;
+}
+
+.songInfo {
+    margin-left: 40px;
+}
+
+.playBar .playBarImg img {
+    width: 145px;
+    height: 96px;
+}
+
+.songBox {
+    display: flex;
+    align-items: center;
+}
+
+.songName {
+    font-size: 24px;
+    line-height: 28px;
+    margin-bottom: 10px;
+}
+
+.artist {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+    color: #646464;
+}
+
+.playBarButtons {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    left: 45%;
+    top: 20%;
+}
+
+.playBarButtons img {
+    width: 30px;
+    height: 30px;
+    margin-left: 30px;
+    margin-right: 30px;
+    cursor: pointer;
+}
+
+.playBarButtons img:hover {
+    filter: opacity(0.5) drop-shadow(0 0 0 grey);
+}
+
+.progressBar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 30%;
+    bottom: 20%;
+}
+
+input[type='range'].bar {
+    background: #C4C4C4;
+    border-radius: 11px;
+    width: 800px;
+    height: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+input[type='range'].bar::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background: #191414;
+    box-shadow: -500px 0 0 500px #191414;
+    height: 5px;
+    width: 0;
+    border: 0;
+}
+
+.volume {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 85%;
+    top: 30%;
+}
+
+.volume img {
+    width: 18.28px;
+    height: 20px;
+    cursor: pointer;
+}
+
+input.songDuration,
+.volumeBar {
+    border-radius: 11px;
+    -webkit-appearance: none;
+    background-color: #C4C4C4;
+    height: 5px;
+    overflow: hidden;
+    width: 80px;
+    outline: none;
+    margin-left: 10px;
+    pointer-events: none;
+}
+
+input.volumeBar {
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+input[type='range']::-webkit-slider-runnable-track {
+    -webkit-appearance: none;
+    /* pointer-events: none; */
+}
+
+input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background: #191414;
+    box-shadow: -200px 0 0 200px #191414;
+    height: 5px;
+    width: 0;
+    border: 0;
+}
+
+.selected {
+    background: rgba(29, 185, 84, 0.2) !important;
+}

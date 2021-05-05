@@ -49,7 +49,9 @@ RecentlyPlayedList:any=[]
   }
 
   getPlaylistInfo(playlist:any){
-    this.playListsAPI.selectedPlaylist = playlist
+    this.playListsAPI.selectedPlaylist = playlist;
     console.log("playlist:", playlist)
+    this.playListsAPI.listOfSelectedPlaylists.push(playlist);
+    console.log("this.playListsAPI.listOfSelectedPlaylists:", this.playListsAPI.listOfSelectedPlaylists)
   }
 }

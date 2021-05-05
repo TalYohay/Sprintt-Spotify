@@ -1,0 +1,34 @@
+<div class="playBar" *ngIf="playListsAPI.selectedPlaylist">
+
+    <div class="songBox">
+        <a [routerLink]="['/', 'playlist', playListsAPI.playlistID]">
+            <div class="playBarImg" *ngIf="playListsAPI.test10">
+                <img src="{{playListsAPI.selectedPlaylist?.image_url}}" />
+            </div>
+        </a>
+        <div class="songInfo">
+            <div class="songName">
+                {{playListsAPI.selectedSong?.name}}
+            </div>
+            <div class="artist">
+                {{playListsAPI.selectedSong?.album_name}}
+            </div>
+        </div>
+    </div>
+    <div class="playBarButtons">
+        <img src="../assets/controller_icons/bar_prev.png" (click)="playPreviousSong()" />
+        <img src="../assets/controller_icons/bar_play.png" id="imgClickAndChange2" (click)="changeImg2(); togglePlaystateSong(playListsAPI.selectedSong.track_id,playListsAPI.selectedRow)" />
+        <img src="../assets/controller_icons/bar_next.png" (click)="playNextSong();" />
+    </div>
+    <div class="progressBar">
+        <div class="timePassed">{{currentTime}}</div>
+        <input class="bar songDuration" type="range" id="bars" [value]="playListsAPI.player?.currentTime" min="0" max="{{playListsAPI.player?.duration}}" />
+
+        <div class="songDuration">{{playListsAPI.selectedSong?.duration | date: 'mm:ss'}}</div>
+
+    </div>
+    <div class="volume">
+        <img src="../assets/volume.png" (click)="toggleMuteVolume()" />
+        <input class="volumeBar" id="volume1" type="range" min="0" max="1" step="0.01" value="0.5" (input)="setVolume($event)" />
+    </div>
+</div>

@@ -9,6 +9,18 @@ export class PlayListsService {
   userToken = "1072694e-6a8b-4973-9cd0-96ac1ee6e4a2";
   reqAudio: any;
   selectedPlaylist: any;
+  listOfSelectedPlaylists:any = []
+  selectedSong:any;
+  selectedRow:any;
+  selectedLikedSongIndex:any;
+  nextSong:any;
+  previousSong:any;
+  player = new Audio();
+  playListSongs: any = [];
+  index:any;
+  isPlaying: boolean = false;
+  playlistID:any;
+  test10:boolean = false
 
   constructor(public http: HttpClient) {}
 
@@ -142,10 +154,54 @@ export class PlayListsService {
   }
 
 
+  togglePlaystateSong(id: number, index: number) {
+    let image2 = <HTMLInputElement>(
+      document.getElementById("imgClickAndChange2")
+    );
 
-  // getSelectedPlayList(playlist:any){
-  //   this.selectedPlaylist = playlist;
-  //   console.log("this.selectedPlaylist:", this.selectedPlaylist)
-  // }
+    this.test10 = true;
+
+    if (!this.selectedSong || this.selectedSong.track_id !== id) {
+      const token = this.generateToken();
+      const songUrl = `http://api.sprintt.co/spotify/play/${id}?access=${token}`;
+      this.player.src = songUrl;
+      this.player.load();
+      this.player.play();
+   
+      console.log("row's index:", index);
+      this.isPlaying = true;
   
+      image2.src = "../assets/controller_icons/bar_pause.png";
+    } else {
+      if (this.player.paused) {
+        this.isPlaying = true;
+        this.player.play();
+
+        image2.src = "../assets/controller_icons/bar_pause.png";
+      } else {
+        this.player.pause();
+        this.isPlaying = false;
+        image2.src = "../assets/controller_icons/bar_play.png";
+
+      }
+    }
+  }
+
+
+
+
+
+  CheckPlaylistID(){
+    for(let i = 0; i<this.listOfSelectedPlaylists.length; i++){
+      console.log("this.playListsAPI.listOfSelectedPlaylists[i].playlist_id:", this.listOfSelectedPlaylists[i].playlist_id)
+      console.log("this.playListsAPI.playlistID:", this.playlistID)
+      if(this.listOfSelectedPlaylists[i].playlist_id != this.playlistID){
+
+        console.log("IDS NOT MATCHED!!")
+      }else{
+        console.log("MATCHED IDS!!!")
+      }
+    }
+  }
+
 }

@@ -13,6 +13,7 @@ import { PlayListPageComponent } from './play-list-page/play-list-page.component
 import { SearchPipe } from './pipes/search.pipe';
 import { FormsModule } from '@angular/forms';
 import { GenrePageComponent } from './genre-page/genre-page.component';
+import { PlayBarComponent } from './play-bar/play-bar.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { GenrePageComponent } from './genre-page/genre-page.component';
     LikedsongsComponent,
     PlayListPageComponent,
     SearchPipe,
-    GenrePageComponent
+    GenrePageComponent,
+    PlayBarComponent
   ],
   imports: [
     BrowserModule,
