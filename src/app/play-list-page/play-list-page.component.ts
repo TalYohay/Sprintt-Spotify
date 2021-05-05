@@ -54,7 +54,7 @@ export class PlayListPageComponent implements OnInit {
     console.log("Play list ID:",this.playListsAPI.playlistID);
     this.getPlaylistInfo()
     // this.getPlaylistInfo(this.ee);
-    this.getGenrePlaylists();
+    // this.getGenrePlaylists();
     this.getPlaylistSongs();
     // this.combinAllAPI();
     // this.playListsAPI.player.addEventListener("ended", () => {

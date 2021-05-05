@@ -30,21 +30,21 @@ RecentlyPlayedList:any=[]
   featuredPlayList(){
     this.playListsAPI.featuredPlaylist().subscribe((data)=>{
       this.FeaturedPlayLists = data;
-      console.log('featuredPlayLists:',this.FeaturedPlayLists)
+      // console.log('featuredPlayLists:',this.FeaturedPlayLists)
     })
   }
 
   MoodPlayList(){
     this.playListsAPI.MoodPlaylist().subscribe((data)=>{
       this.MoodPlayLists = data;
-      console.log('MoodPlayLists:', this.MoodPlayLists)
+      // console.log('MoodPlayLists:', this.MoodPlayLists)
     })
   }
 
   RecentlyPlayed(){
     this.playListsAPI.RecentlyPlayed().subscribe((data)=>{
       this.RecentlyPlayedList = data;
-      console.log('RecentlyPlayed:', this.RecentlyPlayedList)
+      // console.log('RecentlyPlayed:', this.RecentlyPlayedList)
     })
   }
 
