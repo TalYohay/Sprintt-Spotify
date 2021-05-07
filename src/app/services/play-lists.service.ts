@@ -28,6 +28,7 @@ export class PlayListsService {
   currectPlayingPlaylist:any = []
   test500:any = []
   test700:any = []
+  test600:any;
   constructor(public http: HttpClient) {}
 
   featuredPlaylist() {

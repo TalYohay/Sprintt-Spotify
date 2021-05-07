@@ -169,8 +169,13 @@ export class PlayListPageComponent implements OnInit {
 
   if(this.playListsAPI.id99 == this.actRoute.snapshot.params["id"]){
     this.playListsAPI.selectedRow = this.playListsAPI.index99;
+    
   }else{
+    console.log("this.playListsAPI.selectedRow:",this.playListsAPI.selectedRow)
+    this.playListsAPI.test600 = this.playListsAPI.selectedRow
     this.playListsAPI.selectedRow=null;
+    // this.playListsAPI.index99=null;
+    console.log("this.playListsAPI.selectedRow:",this.playListsAPI.selectedRow,"this.playListsAPI.index99:", this.playListsAPI.index99, "this.playListsAPI.test600 :", this.playListsAPI.test600 )
   }
   console.log("this.playListsAPI.currectPlayingPlaylist:", this.playListsAPI.currectPlayingPlaylist)
   console.log("this.playListsAPI.selectedPlaylist:", this.playListsAPI.selectedPlaylist)
