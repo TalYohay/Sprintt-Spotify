@@ -116,6 +116,8 @@ export class PlayBarComponent implements OnInit {
     console.log("previous song:", this.playListsAPI.previousSong.name);
 
     this.playListsAPI.selectedRow = this.playListsAPI.selectedRow - 1;
+    this.playListsAPI.index99 = this.playListsAPI.selectedRow
+
     console.log(" NEW this.selectedRow index:", this.playListsAPI.selectedRow);
 
     const token = this.playListsAPI.generateToken();
