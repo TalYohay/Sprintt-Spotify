@@ -73,14 +73,13 @@ export class PlayBarComponent implements OnInit {
   playNextSong() {
     let image2 = <HTMLInputElement>(
       document.getElementById("imgClickAndChange2"));
-    console.log(this.playListsAPI.selectedSong);
-
-    this.playListsAPI.nextSong = this.playListsAPI.test500.tracks[this.playListsAPI.selectedRow + 1];
-    console.log("next song:", this.playListsAPI.nextSong.name);
-    
-    this.playListsAPI.selectedRow = this.playListsAPI.selectedRow + 1;
-    this.playListsAPI.index99 = this.playListsAPI.selectedRow
-    console.log(" NEW this.selectedRow index:", this.playListsAPI.selectedRow);
+      this.playListsAPI.nextSong = this.playListsAPI.test500.tracks[this.playListsAPI.selectedRow + 1];
+      console.log("nextSong song:", this.playListsAPI.nextSong.name);
+  
+      this.playListsAPI.selectedRow = this.playListsAPI.selectedRow + 1;
+      this.playListsAPI.index99 = this.playListsAPI.selectedRow
+      
+ 
   
     const token = this.playListsAPI.generateToken();
     const songUrl = `http://api.sprintt.co/spotify/play/${

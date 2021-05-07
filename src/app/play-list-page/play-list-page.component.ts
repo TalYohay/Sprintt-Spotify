@@ -167,12 +167,13 @@ export class PlayListPageComponent implements OnInit {
   //   }
   // }
 
-  if(this.playListsAPI.id99 == this.playListsAPI.currectPlayingPlaylist.playlist_id){
+  if(this.playListsAPI.id99 == this.actRoute.snapshot.params["id"]){
     this.playListsAPI.selectedRow = this.playListsAPI.index99;
   }else{
     this.playListsAPI.selectedRow=null;
   }
   console.log("this.playListsAPI.currectPlayingPlaylist:", this.playListsAPI.currectPlayingPlaylist)
+  console.log("this.playListsAPI.selectedPlaylist:", this.playListsAPI.selectedPlaylist)
 }
   setLikedSong(index: any) {
     this.selectedLikedSongIndex = index;
