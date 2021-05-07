@@ -50,12 +50,19 @@ export class PlayListPageComponent implements OnInit {
   test10:boolean = false;
 
   ngOnInit(): void {
+    
+    // this.playListsAPI.selectedRow = null;
+    // this.test(this.playListsAPI.selectedRow)
+   
     this.playListsAPI.playlistID = this.actRoute.snapshot.params["id"];
     console.log("Play list ID:",this.playListsAPI.playlistID);
     this.getPlaylistInfo()
     // this.getPlaylistInfo(this.ee);
     // this.getGenrePlaylists();
     this.getPlaylistSongs();
+    this.test();
+    // setTimeout(() =>{  this.test();}, 500);
+    // this.CheckPlaylistID();
     // this.combinAllAPI();
     // this.playListsAPI.player.addEventListener("ended", () => {
     //   this.playNextSong();
@@ -113,21 +120,60 @@ export class PlayListPageComponent implements OnInit {
   }
 
   setClickedRow(index: any) {
-    // for(let i = 0; i<this.playListsAPI.playListSongs.tracks.length; i++){
-    //   if( this.playListsAPI.selectedSong.track_id != this.playListsAPI.playListSongs.tracks[i].track_id ){
-    //     console.log("FALSE")
-    //   this.playListsAPI.selectedRow = null;
-      
+
+    // if(this.playListsAPI.test40 == this.playListsAPI.playlistID){
+    //   console.log("this.test40:", this.playListsAPI.test40)
+    //   console.log("this.playListsAPI.playlistID:", this.playListsAPI.playlistID)
+    //   this.playListsAPI.selectedRow =index;
     // }else{
-    //   this.playListsAPI.selectedRow = index;
-    //   console.log("TRUE")
-    //   break;
-      
+    //   this.playListsAPI.selectedRow = null
     // }
+    // for(let i = 0; i<this.playListsAPI.playListSongs.tracks.length; i++){
+    //   if( this.playListsAPI.selectedSong.track_id == this.playListsAPI.playListSongs.tracks[i].track_id ){
+    //     console.log("TRUEEE");
+    //     console.log("this.playListsAPI.selectedSong.track_id:", this.playListsAPI.selectedSong.track_id)
+    //   this.playListsAPI.selectedRow = index;
+    //   break;
+    // }else{
+    //   this.playListsAPI.selectedRow = null;
+    //   console.log("FALSE")
+      
+      
+    //   }
     // }
     this.playListsAPI.selectedRow = index;
+    this.playListsAPI.index99=index
+    this.playListsAPI.id99 = this.actRoute.snapshot.params["id"]
+    this.playListsAPI.currectPlayingPlaylist = this.playListsAPI.selectedPlaylist
+    console.log("this.playListsAPI.currectPlayingPlaylist:", this.playListsAPI.currectPlayingPlaylist)
+    this.playListsAPI.getSongsByPlaylistID(this.playListsAPI.currectPlayingPlaylist.playlist_id).subscribe(data => {
+      this.playListsAPI.test500 = data;
+      console.log("this.playListsAPI.test500:", this.playListsAPI.test500);
+      // console.log("playListSongs:", this.playListSongs..tracks.length);
+    });
+
   }
 
+
+  test(){
+  //     for(let i = 0; i<this.playListsAPI.playListSongs.tracks.length; i++){
+  //     if( this.playListsAPI.selectedSong.track_id == this.playListsAPI.playListSongs.tracks[i].track_id ){
+  //       console.log("this.playListsAPI.selectedSong:", this.playListsAPI.selectedSong)
+  //       console.log("this.playListsAPI.selectedSong.track_id:", this.playListsAPI.selectedSong.track_id)
+  //       this.playListsAPI.selectedRow = this.playListsAPI.index99;
+  //       break;
+  //   }else{
+  //     this.playListsAPI.selectedRow=null;
+  //   }
+  // }
+
+  if(this.playListsAPI.id99 == this.playListsAPI.currectPlayingPlaylist.playlist_id){
+    this.playListsAPI.selectedRow = this.playListsAPI.index99;
+  }else{
+    this.playListsAPI.selectedRow=null;
+  }
+  console.log("this.playListsAPI.currectPlayingPlaylist:", this.playListsAPI.currectPlayingPlaylist)
+}
   setLikedSong(index: any) {
     this.selectedLikedSongIndex = index;
     // console.log(this.selectedLikedSongIndex);
@@ -171,6 +217,10 @@ export class PlayListPageComponent implements OnInit {
     this.selectedPlaylist = this.playListsAPI.selectedPlaylist;
 
     console.log("this.selectedPlaylist:", this.playListsAPI.selectedPlaylist)
+  }
+
+  CheckPlaylistID(){
+    this.playListsAPI.CheckPlaylistID()
   }
 
 

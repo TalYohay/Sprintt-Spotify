@@ -21,7 +21,13 @@ export class PlayListsService {
   isPlaying: boolean = false;
   playlistID:any;
   test10:boolean = false
-
+  test30:any;
+  test40:any;
+  index99:any;
+  id99:any;
+  currectPlayingPlaylist:any = []
+  test500:any = []
+  test700:any = []
   constructor(public http: HttpClient) {}
 
   featuredPlaylist() {
@@ -167,11 +173,12 @@ export class PlayListsService {
       this.player.src = songUrl;
       this.player.load();
       this.player.play();
-   
       console.log("row's index:", index);
       this.isPlaying = true;
-  
       image2.src = "../assets/controller_icons/bar_pause.png";
+      // this.test30 = this.selectedSong.track_id;
+      // this.test40 = this.selectedPlaylist.playlist_id;
+      // console.log("this.test40:", this.test40)
     } else {
       if (this.player.paused) {
         this.isPlaying = true;

@@ -74,11 +74,14 @@ export class PlayBarComponent implements OnInit {
     let image2 = <HTMLInputElement>(
       document.getElementById("imgClickAndChange2"));
     console.log(this.playListsAPI.selectedSong);
-    this.playListsAPI.nextSong = this.playListsAPI.playListSongs.tracks[this.playListsAPI.selectedRow + 1];
-    console.log("next song:", this.playListsAPI.nextSong.name);
-    this.playListsAPI.selectedRow = this.playListsAPI.selectedRow + 1;
-    console.log(" NEW this.selectedRow index:", this.playListsAPI.selectedRow);
 
+    this.playListsAPI.nextSong = this.playListsAPI.test500.tracks[this.playListsAPI.selectedRow + 1];
+    console.log("next song:", this.playListsAPI.nextSong.name);
+    
+    this.playListsAPI.selectedRow = this.playListsAPI.selectedRow + 1;
+    this.playListsAPI.index99 = this.playListsAPI.selectedRow
+    console.log(" NEW this.selectedRow index:", this.playListsAPI.selectedRow);
+  
     const token = this.playListsAPI.generateToken();
     const songUrl = `http://api.sprintt.co/spotify/play/${
       this.playListsAPI.nextSong.track_id
@@ -103,13 +106,13 @@ export class PlayBarComponent implements OnInit {
       this.playListsAPI.isPlaying = true;
       image2.src = "../assets/controller_icons/bar_pause.png";
     }
-  }
-
+  
+}
   playPreviousSong() {
     let image2 = <HTMLInputElement>(
       document.getElementById("imgClickAndChange2"));
     console.log(this.playListsAPI.selectedSong);
-    this.playListsAPI.previousSong = this.playListsAPI.playListSongs.tracks[this.playListsAPI.selectedRow - 1];
+    this.playListsAPI.previousSong = this.playListsAPI.test500.tracks[this.playListsAPI.selectedRow - 1];
     console.log("previous song:", this.playListsAPI.previousSong.name);
 
     this.playListsAPI.selectedRow = this.playListsAPI.selectedRow - 1;
