@@ -113,34 +113,16 @@ export class PlayBarComponent implements OnInit {
       
       
     else{
-        // console.log(this.playListsAPI.selectedSong)
-        // this.playListsAPI.selectedRow=this.playListsAPI.test600 ;
-        // this.playListsAPI.selectedRow = this.playListsAPI.index99
-        // this.playListsAPI.index99=this.playListsAPI.selectedRow
-        // this.playListsAPI.nextSong = this.playListsAPI.test500.tracks[this.playListsAPI.selectedRow + 1];
-        // console.log(this.playListsAPI.selectedRow, this.playListsAPI.index99, this.playListsAPI.test600)
-
-
-
-
-
-
-
-
-
-
         let image2 = <HTMLInputElement>(
           document.getElementById("imgClickAndChange2"));
           
           this.playListsAPI.selectedRow = null;
-          // this.playListsAPI.index99 = this.playListsAPI.test600;
           console.log("this.playListsAPI.selectedRow:", this.playListsAPI.selectedRow, "this.playListsAPI.index99:",this.playListsAPI.index99, "this.playListsAPI.test600:", this.playListsAPI.test600 )
           console.log('this.playListsAPI.selectedSong:', this.playListsAPI.selectedSong)
           this.playListsAPI.nextSong = this.playListsAPI.test500.tracks[this.playListsAPI.test600 + 1];
           console.log("nextSong song:", this.playListsAPI.nextSong.name, this.playListsAPI.test600 + 1);
-      
+    
           this.playListsAPI.test600 = this.playListsAPI.test600 + 1;
-          // this.playListsAPI.selectedRow= this.playListsAPI.test600
           this.playListsAPI.index99 = this.playListsAPI.test600
           console.log(this.playListsAPI.selectedRow,this.playListsAPI.index99 )
      
@@ -183,44 +165,86 @@ export class PlayBarComponent implements OnInit {
     
 }
   playPreviousSong() {
-    let image2 = <HTMLInputElement>(
-      document.getElementById("imgClickAndChange2"));
-    console.log(this.playListsAPI.selectedSong);
-    this.playListsAPI.previousSong = this.playListsAPI.test500.tracks[this.playListsAPI.selectedRow - 1];
-    console.log("previous song:", this.playListsAPI.previousSong.name);
-
-    this.playListsAPI.selectedRow = this.playListsAPI.selectedRow - 1;
-    this.playListsAPI.index99 = this.playListsAPI.selectedRow
-
-    console.log(" NEW this.selectedRow index:", this.playListsAPI.selectedRow);
-
-    const token = this.playListsAPI.generateToken();
-    const songUrl = `http://api.sprintt.co/spotify/play/${
-      this.playListsAPI.previousSong.track_id
-    }?access=${token}`;
-    this.playListsAPI.player.src = songUrl;
-    this.playListsAPI.player.load();
-    this.playListsAPI.player.play();
-    (<HTMLInputElement>document.getElementById("bars")).value = "0";
-    this.playListsAPI.selectedSong = this.playListsAPI.previousSong;
-    this.playListsAPI.player.load();
-    this.playListsAPI.player.play();
-    image2.src = "../assets/controller_icons/bar_pause.png";
-    this.playListsAPI.isPlaying = true;
-
-    (<HTMLInputElement>document.getElementById("bars")).value = "0";
-    this.playListsAPI.selectedSong = this.playListsAPI.previousSong;
-
-    if (this.playListsAPI.player.paused) {
-      this.playListsAPI.isPlaying = false;
-      this.playListsAPI.player.pause();
-
-      image2.src = "../assets/controller_icons/bar_play.png";
-    } else {
+    if(this.playListsAPI.currectPlayingPlaylist.playlist_id == this.playListsAPI.playlistID){
+      let image2 = <HTMLInputElement>(
+        document.getElementById("imgClickAndChange2"));
+        console.log(this.playListsAPI.selectedRow,this.playListsAPI.index99 )
+        this.playListsAPI.previousSong = this.playListsAPI.test500.tracks[this.playListsAPI.selectedRow - 1];
+        console.log("previousSong song:", this.playListsAPI.previousSong.name, this.playListsAPI.selectedRow - 1);
+    
+        this.playListsAPI.selectedRow = this.playListsAPI.selectedRow - 1;
+        this.playListsAPI.index99 = this.playListsAPI.selectedRow
+        console.log(this.playListsAPI.selectedRow,this.playListsAPI.index99 )
+   
+    
+      const token = this.playListsAPI.generateToken();
+      const songUrl = `http://api.sprintt.co/spotify/play/${
+        this.playListsAPI.previousSong.track_id
+      }?access=${token}`;
+      this.playListsAPI.player.src = songUrl;
+      this.playListsAPI.player.load();
       this.playListsAPI.player.play();
-      this.playListsAPI.isPlaying = true;
       image2.src = "../assets/controller_icons/bar_pause.png";
+      this.playListsAPI.isPlaying = true;
+  
+      (<HTMLInputElement>document.getElementById("bars")).value = "0";
+      this.playListsAPI.selectedSong = this.playListsAPI.previousSong;
+      console.log('this.playListsAPI.selectedSong:', this.playListsAPI.selectedSong)
+  
+      if (this.playListsAPI.player.paused) {
+        this.playListsAPI.isPlaying = false;
+        this.playListsAPI.player.pause();
+  
+        image2.src = "../assets/controller_icons/bar_play.png";
+      } else {
+        this.playListsAPI.player.play();
+        this.playListsAPI.isPlaying = true;
+        image2.src = "../assets/controller_icons/bar_pause.png";
+      }
+      
+    }
 
+    else{
+      let image2 = <HTMLInputElement>(
+        document.getElementById("imgClickAndChange2"));
+        
+        this.playListsAPI.selectedRow = null;
+        console.log("this.playListsAPI.selectedRow:", this.playListsAPI.selectedRow, "this.playListsAPI.index99:",this.playListsAPI.index99, "this.playListsAPI.test600:", this.playListsAPI.test600 )
+        console.log('this.playListsAPI.selectedSong:', this.playListsAPI.selectedSong)
+        this.playListsAPI.previousSong = this.playListsAPI.test500.tracks[this.playListsAPI.test600 - 1];
+        console.log("previousSong song:", this.playListsAPI.previousSong.name, this.playListsAPI.test600 - 1);
+  
+        this.playListsAPI.test600 = this.playListsAPI.test600 - 1;
+        this.playListsAPI.index99 = this.playListsAPI.test600
+        console.log(this.playListsAPI.selectedRow,this.playListsAPI.index99 )
+   
+    
+      const token = this.playListsAPI.generateToken();
+      const songUrl = `http://api.sprintt.co/spotify/play/${
+        this.playListsAPI.previousSong.track_id
+      }?access=${token}`;
+      this.playListsAPI.player.src = songUrl;
+      this.playListsAPI.player.load();
+      this.playListsAPI.player.play();
+      image2.src = "../assets/controller_icons/bar_pause.png";
+      this.playListsAPI.isPlaying = true;
+  
+      (<HTMLInputElement>document.getElementById("bars")).value = "0";
+      this.playListsAPI.selectedSong = this.playListsAPI.previousSong;
+      console.log(" this.playListsAPI.selectedSong:",  this.playListsAPI.selectedSong )
+      
+  
+      if (this.playListsAPI.player.paused) {
+        this.playListsAPI.isPlaying = false;
+        this.playListsAPI.player.pause();
+  
+        image2.src = "../assets/controller_icons/bar_play.png";
+      } else {
+        this.playListsAPI.player.play();
+        this.playListsAPI.isPlaying = true;
+        image2.src = "../assets/controller_icons/bar_pause.png";
+      }
+      
     }
 
     
