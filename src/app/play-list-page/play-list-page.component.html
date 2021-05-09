@@ -1,11 +1,11 @@
 <div class="container">
     <div class="banner" id="#imgcontainer">
         <!-- [ngStyle]="{'background-image':'url(' + selectedPlaylist?.image_url + ')'}" -->
-        <img src="{{selectedPlaylist?.image_url}}">
+        <img src="{{playListsAPI.savedLocalPlaylist?.image_url}}">
         <div class="playListInfo">
 
-            <h1>{{selectedPlaylist?.name}}</h1>
-            <h3>{{selectedPlaylist?.description}}</h3>
+            <h1>{{playListsAPI.savedLocalPlaylist?.name}}</h1>
+            <h3>{{playListsAPI.savedLocalPlaylist?.description}}</h3>
 
 
             <p id="tracks_length">{{playListsAPI.playListSongs?.playlist_tracks}} Songs</p>

@@ -17,6 +17,7 @@ tests:any
 FeaturedPlayLists:any=[]
 MoodPlayLists:any=[]
 RecentlyPlayedList:any=[]
+  test: any;
   constructor(public playListsAPI:PlayListsService) { }
 
   ngOnInit(): void {
@@ -51,6 +52,8 @@ RecentlyPlayedList:any=[]
   getPlaylistInfo(playlist:any){
     this.playListsAPI.selectedPlaylist = playlist;
     console.log("playlist:", playlist)
+    localStorage.setItem("selectedPlaylist", JSON.stringify(this.playListsAPI.selectedPlaylist))
+
     // this.playListsAPI.listOfSelectedPlaylists.push(playlist);
     // console.log("this.playListsAPI.listOfSelectedPlaylists:", this.playListsAPI.listOfSelectedPlaylists)
   }

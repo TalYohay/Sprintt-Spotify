@@ -20,7 +20,7 @@ export class PlayBarComponent implements OnInit {
   genrePlaylists: any = [];
   playListSongs: any = [];
   searchTerm: any;
-  playlists3: any = [];
+
   selectedSong: any = {};
   image_tracker: any = "notLiked";
   selectedRow: any;
@@ -36,16 +36,12 @@ export class PlayBarComponent implements OnInit {
   progressPercent: any;
   minutes: any;
   seconds: any;
-  ee: any;
-  seek: any;
+
   playbackPosition: any;
-  newPosition: any;
-  bla: any;
+
   likedSongsArray: any = [];
   isPlaying: boolean = false;
-  isLikedTrue: any = [];
-  isLikedFalse: any = [];
-  test10:boolean = false;
+ 
 
   ngOnInit(): void {
 
@@ -72,16 +68,16 @@ export class PlayBarComponent implements OnInit {
   
   playNextSong() {
     
-      if(this.playListsAPI.currectPlayingPlaylist.playlist_id == this.playListsAPI.playlistID){
+      if(this.playListsAPI.currectPlayingPlaylistInfo.playlist_id == this.playListsAPI.playlistID){
         let image2 = <HTMLInputElement>(
           document.getElementById("imgClickAndChange2"));
-          console.log(this.playListsAPI.selectedRow,this.playListsAPI.index99 )
-          this.playListsAPI.nextSong = this.playListsAPI.test500.tracks[this.playListsAPI.selectedRow + 1];
+          console.log(this.playListsAPI.selectedRow,this.playListsAPI.playlistSelectedRowTrackerA )
+          this.playListsAPI.nextSong = this.playListsAPI.currectPlayingPlaylist.tracks[this.playListsAPI.selectedRow + 1];
           console.log("nextSong song:", this.playListsAPI.nextSong.name, this.playListsAPI.selectedRow + 1);
       
           this.playListsAPI.selectedRow = this.playListsAPI.selectedRow + 1;
-          this.playListsAPI.index99 = this.playListsAPI.selectedRow
-          console.log(this.playListsAPI.selectedRow,this.playListsAPI.index99 )
+          this.playListsAPI.playlistSelectedRowTrackerA = this.playListsAPI.selectedRow
+          console.log(this.playListsAPI.selectedRow,this.playListsAPI.playlistSelectedRowTrackerA )
      
       
         const token = this.playListsAPI.generateToken();
@@ -117,14 +113,14 @@ export class PlayBarComponent implements OnInit {
           document.getElementById("imgClickAndChange2"));
           
           this.playListsAPI.selectedRow = null;
-          console.log("this.playListsAPI.selectedRow:", this.playListsAPI.selectedRow, "this.playListsAPI.index99:",this.playListsAPI.index99, "this.playListsAPI.test600:", this.playListsAPI.test600 )
+          console.log("this.playListsAPI.selectedRow:", this.playListsAPI.selectedRow, "this.playListsAPI.playlistSelectedRowTrackerA:",this.playListsAPI.playlistSelectedRowTrackerA, "this.playListsAPI.playlistSelectedRowTrackerB:", this.playListsAPI.playlistSelectedRowTrackerB )
           console.log('this.playListsAPI.selectedSong:', this.playListsAPI.selectedSong)
-          this.playListsAPI.nextSong = this.playListsAPI.test500.tracks[this.playListsAPI.test600 + 1];
-          console.log("nextSong song:", this.playListsAPI.nextSong.name, this.playListsAPI.test600 + 1);
+          this.playListsAPI.nextSong = this.playListsAPI.currectPlayingPlaylist.tracks[this.playListsAPI.playlistSelectedRowTrackerB + 1];
+          console.log("nextSong song:", this.playListsAPI.nextSong.name, this.playListsAPI.playlistSelectedRowTrackerB + 1);
     
-          this.playListsAPI.test600 = this.playListsAPI.test600 + 1;
-          this.playListsAPI.index99 = this.playListsAPI.test600
-          console.log(this.playListsAPI.selectedRow,this.playListsAPI.index99 )
+          this.playListsAPI.playlistSelectedRowTrackerB = this.playListsAPI.playlistSelectedRowTrackerB + 1;
+          this.playListsAPI.playlistSelectedRowTrackerA = this.playListsAPI.playlistSelectedRowTrackerB
+          console.log(this.playListsAPI.selectedRow,this.playListsAPI.playlistSelectedRowTrackerA )
      
       
         const token = this.playListsAPI.generateToken();
@@ -165,16 +161,16 @@ export class PlayBarComponent implements OnInit {
     
 }
   playPreviousSong() {
-    if(this.playListsAPI.currectPlayingPlaylist.playlist_id == this.playListsAPI.playlistID){
+    if(this.playListsAPI.currectPlayingPlaylistInfo.playlist_id == this.playListsAPI.playlistID){
       let image2 = <HTMLInputElement>(
         document.getElementById("imgClickAndChange2"));
-        console.log(this.playListsAPI.selectedRow,this.playListsAPI.index99 )
-        this.playListsAPI.previousSong = this.playListsAPI.test500.tracks[this.playListsAPI.selectedRow - 1];
+        console.log(this.playListsAPI.selectedRow,this.playListsAPI.playlistSelectedRowTrackerA )
+        this.playListsAPI.previousSong = this.playListsAPI.currectPlayingPlaylist.tracks[this.playListsAPI.selectedRow - 1];
         console.log("previousSong song:", this.playListsAPI.previousSong.name, this.playListsAPI.selectedRow - 1);
     
         this.playListsAPI.selectedRow = this.playListsAPI.selectedRow - 1;
-        this.playListsAPI.index99 = this.playListsAPI.selectedRow
-        console.log(this.playListsAPI.selectedRow,this.playListsAPI.index99 )
+        this.playListsAPI.playlistSelectedRowTrackerA = this.playListsAPI.selectedRow
+        console.log(this.playListsAPI.selectedRow,this.playListsAPI.playlistSelectedRowTrackerA )
    
     
       const token = this.playListsAPI.generateToken();
@@ -209,14 +205,14 @@ export class PlayBarComponent implements OnInit {
         document.getElementById("imgClickAndChange2"));
         
         this.playListsAPI.selectedRow = null;
-        console.log("this.playListsAPI.selectedRow:", this.playListsAPI.selectedRow, "this.playListsAPI.index99:",this.playListsAPI.index99, "this.playListsAPI.test600:", this.playListsAPI.test600 )
+        console.log("this.playListsAPI.selectedRow:", this.playListsAPI.selectedRow, "this.playListsAPI.playlistSelectedRowTrackerA:",this.playListsAPI.playlistSelectedRowTrackerA, "this.playListsAPI.playlistSelectedRowTrackerB:", this.playListsAPI.playlistSelectedRowTrackerB )
         console.log('this.playListsAPI.selectedSong:', this.playListsAPI.selectedSong)
-        this.playListsAPI.previousSong = this.playListsAPI.test500.tracks[this.playListsAPI.test600 - 1];
-        console.log("previousSong song:", this.playListsAPI.previousSong.name, this.playListsAPI.test600 - 1);
+        this.playListsAPI.previousSong = this.playListsAPI.currectPlayingPlaylist.tracks[this.playListsAPI.playlistSelectedRowTrackerB - 1];
+        console.log("previousSong song:", this.playListsAPI.previousSong.name, this.playListsAPI.playlistSelectedRowTrackerB - 1);
   
-        this.playListsAPI.test600 = this.playListsAPI.test600 - 1;
-        this.playListsAPI.index99 = this.playListsAPI.test600
-        console.log(this.playListsAPI.selectedRow,this.playListsAPI.index99 )
+        this.playListsAPI.playlistSelectedRowTrackerB = this.playListsAPI.playlistSelectedRowTrackerB - 1;
+        this.playListsAPI.playlistSelectedRowTrackerA = this.playListsAPI.playlistSelectedRowTrackerB
+        console.log(this.playListsAPI.selectedRow,this.playListsAPI.playlistSelectedRowTrackerA )
    
     
       const token = this.playListsAPI.generateToken();

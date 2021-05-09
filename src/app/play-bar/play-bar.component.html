@@ -1,9 +1,9 @@
-<div class="playBar" *ngIf="playListsAPI.selectedPlaylist">
+<div class="playBar" *ngIf="playListsAPI.currectPlayingPlaylist">
 
     <div class="songBox">
-        <a [routerLink]="['/', 'playlist', playListsAPI.currectPlayingPlaylist.playlist_id]">
-            <div class="playBarImg" *ngIf="playListsAPI.test10">
-                <img src="{{this.playListsAPI.currectPlayingPlaylist?.image_url}}" />
+        <a [routerLink]="['/', 'playlist', playListsAPI.currectPlayingPlaylistInfo.playlist_id]">
+            <div class="playBarImg" *ngIf="playListsAPI.currectPlayingPlaylistInfo?.image_url">
+                <img src="{{playListsAPI.currectPlayingPlaylistInfo?.image_url}}" />
             </div>
         </a>
         <div class="songInfo">

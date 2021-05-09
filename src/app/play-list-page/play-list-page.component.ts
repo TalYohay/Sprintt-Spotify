@@ -11,6 +11,7 @@ import { switchMap } from "rxjs/operators"; // RxJS v6
 })
 export class PlayListPageComponent implements OnInit {
   
+  
  
   constructor(
     public playListsAPI: PlayListsService,
@@ -38,37 +39,21 @@ export class PlayListPageComponent implements OnInit {
   progressPercent: any;
   minutes: any;
   seconds: any;
-  ee: any;
-  seek: any;
-  playbackPosition: any;
-  newPosition: any;
-  bla: any;
   likedSongsArray: any = [];
   isPlaying: boolean = false;
-  isLikedTrue: any = [];
-  isLikedFalse: any = [];
-  test10:boolean = false;
+  test:any;
+  test10: any;
 
   ngOnInit(): void {
-    
-    // this.playListsAPI.selectedRow = null;
-    // this.test(this.playListsAPI.selectedRow)
+  
    
     this.playListsAPI.playlistID = this.actRoute.snapshot.params["id"];
     console.log("Play list ID:",this.playListsAPI.playlistID);
     this.getPlaylistInfo()
-    // this.getPlaylistInfo(this.ee);
-    // this.getGenrePlaylists();
-    this.getPlaylistSongs();
-    this.test();
-    // setTimeout(() =>{  this.test();}, 500);
-    // this.CheckPlaylistID();
-    // this.combinAllAPI();
-    // this.playListsAPI.player.addEventListener("ended", () => {
-    //   this.playNextSong();
-    // });
 
-  // this.getLikedSongs()
+    this.getPlaylistSongs();
+    this.compareID();
+
 
   }
 
@@ -76,7 +61,6 @@ export class PlayListPageComponent implements OnInit {
     this.playListsAPI.getSongsByPlaylistID(this.playListsAPI.playlistID).subscribe(data => {
       this.playListsAPI.playListSongs = data;
       console.log("playListSongs:", this.playListsAPI.playListSongs);
-      // console.log("playListSongs:", this.playListSongs..tracks.length);
     });
   }
 
@@ -87,16 +71,6 @@ export class PlayListPageComponent implements OnInit {
     })
   }
 
-  combinAllAPI() {
-    let req1 = this.playListsAPI.featuredPlaylist();
-    let req2 = this.playListsAPI.MoodPlaylist();
-    let req3 = this.playListsAPI.RecentlyPlayed();
-    forkJoin([req1, req2, req3]).subscribe((data: Object[]) => {
-      this.playlists3 = data.flat(1);
-      console.log(" this.playlists3:", this.playlists3);
-    });
-
-  }
 
 
 
@@ -121,65 +95,54 @@ export class PlayListPageComponent implements OnInit {
 
   setClickedRow(index: any) {
 
-    // if(this.playListsAPI.test40 == this.playListsAPI.playlistID){
-    //   console.log("this.test40:", this.playListsAPI.test40)
-    //   console.log("this.playListsAPI.playlistID:", this.playListsAPI.playlistID)
-    //   this.playListsAPI.selectedRow =index;
-    // }else{
-    //   this.playListsAPI.selectedRow = null
-    // }
-    // for(let i = 0; i<this.playListsAPI.playListSongs.tracks.length; i++){
-    //   if( this.playListsAPI.selectedSong.track_id == this.playListsAPI.playListSongs.tracks[i].track_id ){
-    //     console.log("TRUEEE");
-    //     console.log("this.playListsAPI.selectedSong.track_id:", this.playListsAPI.selectedSong.track_id)
-    //   this.playListsAPI.selectedRow = index;
-    //   break;
-    // }else{
-    //   this.playListsAPI.selectedRow = null;
-    //   console.log("FALSE")
-      
-      
-    //   }
-    // }
     this.playListsAPI.selectedRow = index;
-    this.playListsAPI.index99=index
-    this.playListsAPI.id99 = this.actRoute.snapshot.params["id"]
-    this.playListsAPI.currectPlayingPlaylist = this.playListsAPI.selectedPlaylist
-    console.log("this.playListsAPI.currectPlayingPlaylist:", this.playListsAPI.currectPlayingPlaylist)
-    this.playListsAPI.getSongsByPlaylistID(this.playListsAPI.currectPlayingPlaylist.playlist_id).subscribe(data => {
-      this.playListsAPI.test500 = data;
-      console.log("this.playListsAPI.test500:", this.playListsAPI.test500);
+    this.playListsAPI.playlistSelectedRowTrackerA=index
+    if(this.playListsAPI.selectedPlaylist != undefined){
+      this.playListsAPI.currectPlayingPlaylistInfo = this.playListsAPI.selectedPlaylist
+    }else{
+      this.playListsAPI.currectPlayingPlaylistInfo = localStorage.getItem("selectedPlaylist");
+      this.playListsAPI.currectPlayingPlaylistInfo = JSON.parse(this.playListsAPI.currectPlayingPlaylistInfo)
+      console.log("this.playListsAPI.currectPlayingPlaylistInfo:",this.playListsAPI.currectPlayingPlaylistInfo)
+      this.playListsAPI.currectPlayingPlaylist = this.playListsAPI.playListSongs
+      console.log("this.playListsAPI.currectPlayingPlaylist:",this.playListsAPI.currectPlayingPlaylist )
+
+    }
+    
+    this.playListsAPI.currectPlayingPlaylistInfo.playlist_id = this.actRoute.snapshot.params["id"]
+   
+    console.log("this.playListsAPI.currectPlayingPlaylistInfo:", this.playListsAPI.currectPlayingPlaylistInfo)
+    this.playListsAPI.getSongsByPlaylistID(this.playListsAPI.currectPlayingPlaylistInfo.playlist_id).subscribe(data => {
+      this.playListsAPI.currectPlayingPlaylist = data;
+      console.log("this.playListsAPI.currectPlayingPlaylist:", this.playListsAPI.currectPlayingPlaylist);
       // console.log("playListSongs:", this.playListSongs..tracks.length);
     });
 
   }
 
 
-  test(){
-  //     for(let i = 0; i<this.playListsAPI.playListSongs.tracks.length; i++){
-  //     if( this.playListsAPI.selectedSong.track_id == this.playListsAPI.playListSongs.tracks[i].track_id ){
-  //       console.log("this.playListsAPI.selectedSong:", this.playListsAPI.selectedSong)
-  //       console.log("this.playListsAPI.selectedSong.track_id:", this.playListsAPI.selectedSong.track_id)
-  //       this.playListsAPI.selectedRow = this.playListsAPI.index99;
-  //       break;
-  //   }else{
-  //     this.playListsAPI.selectedRow=null;
-  //   }
-  // }
+  compareID(){
+    this.playListsAPI.savedLocalPlaylist = localStorage.getItem("selectedPlaylist")
+    this.playListsAPI.savedLocalPlaylist = JSON.parse(this.playListsAPI.savedLocalPlaylist)
+    console.log("this.playListsAPI.test:", this.playListsAPI.savedLocalPlaylist.image_url)
+    // this.playListsAPI.test = this.test10
+    
 
-  if(this.playListsAPI.id99 == this.actRoute.snapshot.params["id"]){
-    this.playListsAPI.selectedRow = this.playListsAPI.index99;
+  if(this.playListsAPI.currectPlayingPlaylistInfo.playlist_id == this.actRoute.snapshot.params["id"]){
+    this.playListsAPI.selectedRow = this.playListsAPI.playlistSelectedRowTrackerA;
     
   }else{
     console.log("this.playListsAPI.selectedRow:",this.playListsAPI.selectedRow)
-    this.playListsAPI.test600 = this.playListsAPI.selectedRow
+    this.playListsAPI.playlistSelectedRowTrackerB = this.playListsAPI.selectedRow
     this.playListsAPI.selectedRow=null;
-    // this.playListsAPI.index99=null;
-    console.log("this.playListsAPI.selectedRow:",this.playListsAPI.selectedRow,"this.playListsAPI.index99:", this.playListsAPI.index99, "this.playListsAPI.test600 :", this.playListsAPI.test600 )
+    // this.playListsAPI.playlistSelectedRowTrackerA=null;
+    console.log("this.playListsAPI.selectedRow:",this.playListsAPI.selectedRow,"this.playListsAPI.playlistSelectedRowTrackerA:", this.playListsAPI.playlistSelectedRowTrackerA, "this.playListsAPI.playlistSelectedRowTrackerB :", this.playListsAPI.playlistSelectedRowTrackerB )
   }
-  console.log("this.playListsAPI.currectPlayingPlaylist:", this.playListsAPI.currectPlayingPlaylist)
+  console.log("this.playListsAPI.currectPlayingPlaylistInfo:", this.playListsAPI.currectPlayingPlaylistInfo)
   console.log("this.playListsAPI.selectedPlaylist:", this.playListsAPI.selectedPlaylist)
 }
+
+
+
   setLikedSong(index: any) {
     this.selectedLikedSongIndex = index;
     // console.log(this.selectedLikedSongIndex);
@@ -225,9 +188,7 @@ export class PlayListPageComponent implements OnInit {
     console.log("this.selectedPlaylist:", this.playListsAPI.selectedPlaylist)
   }
 
-  CheckPlaylistID(){
-    this.playListsAPI.CheckPlaylistID()
-  }
+
 
 
 }

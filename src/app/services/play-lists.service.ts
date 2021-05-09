@@ -9,7 +9,7 @@ export class PlayListsService {
   userToken = "1072694e-6a8b-4973-9cd0-96ac1ee6e4a2";
   reqAudio: any;
   selectedPlaylist: any;
-  listOfSelectedPlaylists:any = []
+
   selectedSong:any;
   selectedRow:any;
   selectedLikedSongIndex:any;
@@ -20,15 +20,14 @@ export class PlayListsService {
   index:any;
   isPlaying: boolean = false;
   playlistID:any;
-  test10:boolean = false
-  test30:any;
-  test40:any;
-  index99:any;
-  id99:any;
+  savedLocalPlaylist:any
+ 
+  
+  playlistSelectedRowTrackerA:any;
+ 
+  currectPlayingPlaylistInfo:any = []
   currectPlayingPlaylist:any = []
-  test500:any = []
-  test700:any = []
-  test600:any;
+  playlistSelectedRowTrackerB:any;
   constructor(public http: HttpClient) {}
 
   featuredPlaylist() {
@@ -166,7 +165,7 @@ export class PlayListsService {
       document.getElementById("imgClickAndChange2")
     );
 
-    this.test10 = true;
+   
 
     if (!this.selectedSong || this.selectedSong.track_id !== id) {
       const token = this.generateToken();
@@ -177,9 +176,6 @@ export class PlayListsService {
       console.log("row's index:", index);
       this.isPlaying = true;
       image2.src = "../assets/controller_icons/bar_pause.png";
-      // this.test30 = this.selectedSong.track_id;
-      // this.test40 = this.selectedPlaylist.playlist_id;
-      // console.log("this.test40:", this.test40)
     } else {
       if (this.player.paused) {
         this.isPlaying = true;
@@ -198,18 +194,5 @@ export class PlayListsService {
 
 
 
-
-  CheckPlaylistID(){
-    for(let i = 0; i<this.listOfSelectedPlaylists.length; i++){
-      console.log("this.playListsAPI.listOfSelectedPlaylists[i].playlist_id:", this.listOfSelectedPlaylists[i].playlist_id)
-      console.log("this.playListsAPI.playlistID:", this.playlistID)
-      if(this.listOfSelectedPlaylists[i].playlist_id != this.playlistID){
-
-        console.log("IDS NOT MATCHED!!")
-      }else{
-        console.log("MATCHED IDS!!!")
-      }
-    }
-  }
 
 }
