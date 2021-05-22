@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import{ PlayListsService } from '../services/play-lists.service'
 @Component({
   selector: 'app-home',
@@ -18,12 +19,14 @@ FeaturedPlayLists:any=[]
 MoodPlayLists:any=[]
 RecentlyPlayedList:any=[]
   test: any;
-  constructor(public playListsAPI:PlayListsService) { }
+  constructor(public playListsAPI:PlayListsService, public actRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.featuredPlayList();
     this.MoodPlayList();
     this.RecentlyPlayed();
+    this.playListsAPI.checkParamsID = (this.actRoute.snapshot.paramMap.has('id'))
+    console.log(this.playListsAPI.checkParamsID)
 
   }
 
@@ -50,6 +53,7 @@ RecentlyPlayedList:any=[]
   }
 
   getPlaylistInfo(playlist:any){
+    
     this.playListsAPI.selectedPlaylist = playlist;
     console.log("playlist:", playlist)
     localStorage.setItem("selectedPlaylist", JSON.stringify(this.playListsAPI.selectedPlaylist))
@@ -57,4 +61,17 @@ RecentlyPlayedList:any=[]
     // this.playListsAPI.listOfSelectedPlaylists.push(playlist);
     // console.log("this.playListsAPI.listOfSelectedPlaylists:", this.playListsAPI.listOfSelectedPlaylists)
   }
+  // getPlaylistInfo(playlist:any){
+  //   console.log(this.actRoute.snapshot.paramMap.has('id'))
+  //   if(this.actRoute.snapshot.paramMap.has('id')==true){
+  //     this.playListsAPI.selectedPlaylist = playlist;
+  //     console.log("playlist:", playlist)
+  //     localStorage.setItem("selectedPlaylist", JSON.stringify(this.playListsAPI.selectedPlaylist))
+  //   }else{
+  //     this.playListsAPI.selectedPlaylist == this.playListsAPI.playListSongs
+  //   }
+
+  //   // this.playListsAPI.listOfSelectedPlaylists.push(playlist);
+  //   // console.log("this.playListsAPI.listOfSelectedPlaylists:", this.playListsAPI.listOfSelectedPlaylists)
+  // }
 }

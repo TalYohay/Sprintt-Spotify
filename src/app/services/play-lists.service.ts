@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
+import { ActivatedRoute } from "@angular/router";
 
 @Injectable({
   providedIn: "root"
@@ -9,7 +10,7 @@ export class PlayListsService {
   userToken = "1072694e-6a8b-4973-9cd0-96ac1ee6e4a2";
   reqAudio: any;
   selectedPlaylist: any;
-
+  likedSongs:any = []
   selectedSong:any;
   selectedRow:any;
   selectedLikedSongIndex:any;
@@ -21,14 +22,15 @@ export class PlayListsService {
   isPlaying: boolean = false;
   playlistID:any;
   savedLocalPlaylist:any
- 
+  LikedSongscurrectPlayingPlaylist:any = []
   
   playlistSelectedRowTrackerA:any;
  
   currectPlayingPlaylistInfo:any = []
   currectPlayingPlaylist:any = []
   playlistSelectedRowTrackerB:any;
-  constructor(public http: HttpClient) {}
+  checkParamsID!: boolean;
+  constructor(public http: HttpClient, public actRoute: ActivatedRoute) {}
 
   featuredPlaylist() {
     const token = "1072694e-6a8b-4973-9cd0-96ac1ee6e4a2";
@@ -41,7 +43,7 @@ export class PlayListsService {
       headers: headers
     };
     return this.http.get(
-      `https://cors.bridged.cc/http://api.sprintt.co/spotify/featured_playlists?limit=10`,
+      `http://api.sprintt.co/spotify/featured_playlists?limit=10`,
       httpOptions
     );
   }
@@ -57,7 +59,7 @@ export class PlayListsService {
       headers: headers
     };
     return this.http.get(
-      `https://cors.bridged.cc/http://api.sprintt.co/spotify/mood_playlists?limit=10`,
+      `http://api.sprintt.co/spotify/mood_playlists?limit=10`,
       httpOptions
     );
   }
@@ -163,11 +165,10 @@ export class PlayListsService {
   togglePlaystateSong(id: number, index: number) {
     let image2 = <HTMLInputElement>(
       document.getElementById("imgClickAndChange2")
+
     );
-
-   
-
     if (!this.selectedSong || this.selectedSong.track_id !== id) {
+      
       const token = this.generateToken();
       const songUrl = `http://api.sprintt.co/spotify/play/${id}?access=${token}`;
       this.player.src = songUrl;
@@ -191,7 +192,33 @@ export class PlayListsService {
     }
   }
 
+  setClickedRow(index: any) {
 
+    this.selectedRow = index;
+    this.playlistSelectedRowTrackerA=index
+    if(this.selectedPlaylist != undefined){
+      this.currectPlayingPlaylistInfo = this.selectedPlaylist
+    }else{
+      this.currectPlayingPlaylistInfo = localStorage.getItem("selectedPlaylist");
+      this.currectPlayingPlaylistInfo = JSON.parse(this.currectPlayingPlaylistInfo)
+      console.log("this.playListsAPI.currectPlayingPlaylistInfo:",this.currectPlayingPlaylistInfo)
+      this.currectPlayingPlaylist = this.playListSongs
+      console.log("this.playListsAPI.currectPlayingPlaylist:",this.currectPlayingPlaylist )
+
+    }
+    
+    
+    this.currectPlayingPlaylistInfo.playlist_id = this.actRoute.snapshot.params["id"]
+    console.log("this.currectPlayingPlaylistInfo.playlist_id:", this.currectPlayingPlaylistInfo.playlist_id)
+   
+    console.log("this.playListsAPI.currectPlayingPlaylistInfo:", this.currectPlayingPlaylistInfo)
+    this.getSongsByPlaylistID(this.playlistID ).subscribe(data => {
+      this.currectPlayingPlaylist = data;
+      console.log("this.playListsAPI.currectPlayingPlaylist:", this.currectPlayingPlaylist);
+      // console.log("playListSongs:", this.playListSongs..tracks.length);
+    });
+
+  }
 
 
 

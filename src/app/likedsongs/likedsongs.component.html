@@ -3,7 +3,7 @@
         <img src="../assets/liked_songs.jpg">
         <div class="playListInfo">
             <h1>Liked Songs</h1>
-            <p>{{likedSongs.liked_tracks?.length}} Songs</p>
+            <p>{{playListsAPI.likedSongs?.liked_tracks?.length}} Songs</p>
         </div>
 
     </div>
@@ -12,7 +12,7 @@
             <i class="fa fa-search" style="color:#999;"></i>
             <input type="text" placeholder="Filter" [(ngModel)]="searchTerm" [ngModelOptions]="{standalone: true}">
         </div>
-        <div class="tableWrapper" *ngIf="(likedSongs?.liked_tracks | search:searchTerm).length > 0">
+        <div class="tableWrapper" *ngIf="(playListsAPI.likedSongs?.liked_tracks| search:searchTerm).length > 0">
             <table>
                 <thead>
                     <tr>
@@ -27,18 +27,18 @@
                 <tbody>
                     <!-- | search:searchTerm -->
                     <!-- *ngIf=" likedSongs.liked_tracks[i].is_liked==1" -->
-                    <tr *ngFor="let song of likedSongs?.liked_tracks | search:searchTerm; let i = index;" [class.selected]="i==selectedRow">
-                        <td *ngIf="!isPlaying || i !== selectedRow">
+                    <tr *ngFor="let song of playListsAPI.likedSongs?.liked_tracks | search:searchTerm; let i = index;" [class.selected]="i==playListsAPI.selectedRow" id="selectttt">
+                        <td *ngIf="!playListsAPI.isPlaying || i !== playListsAPI.selectedRow">
                             <img src="../assets/play_line_icon.png" class="playBtn" (click)="togglePlaystateSong(song.track_id,i);getSongInfo(song);setClickedRow(i)" id="imgClickAndChange" />
                         </td>
-                        <td *ngIf="isPlaying && i === selectedRow">
+                        <td *ngIf="playListsAPI.isPlaying && i === playListsAPI.selectedRow">
                             <img src="../assets/pause_line_icon.png" class="pauseBtn" (click)="togglePlaystateSong(song.track_id,i);getSongInfo(song);setClickedRow(i)" id="imgClickAndChange" />
                         </td>
                         <!-- <img class="playBtn" src="..\assets\play_line_icon.png"> -->
-                        <td *ngIf="likedSongs.liked_tracks[i].is_liked==0">
+                        <td *ngIf="playListsAPI.likedSongs.liked_tracks[i].is_liked==0">
                             <img src="..\assets\not_liked.png" id="likedImg" (click)="toggleLikedSongs(song.track_id);setLikedSong(i)" style="cursor:pointer" />
                         </td>
-                        <td *ngIf="likedSongs.liked_tracks[i].is_liked==1">
+                        <td *ngIf="playListsAPI.likedSongs.liked_tracks[i].is_liked==1">
                             <img src="..\assets\liked.png" id="likedImg" (click)="toggleLikedSongs(song.track_id);setLikedSong(i)" style="cursor:pointer" />
                         </td>
                         <td> {{song.name}}</td>
@@ -46,23 +46,16 @@
                         <td>{{song.album_name}}</td>
                         <td>{{song.release_date | date: 'yyyy-MM-dd'}}</td>
                     </tr>
-
-
-
                 </tbody>
             </table>
-
-
-
         </div>
-
     </div>
-    <div *ngIf="(likedSongs.liked_tracks | search:searchTerm).length === 0">
+    <div *ngIf="(playListsAPI.likedSongs.liked_tracks| search:searchTerm).length === 0">
         <h1 class="error">No Songs Found!</h1>
     </div>
 
 </div>
-<div class="playBar">
+<!-- <div class="playBar">
     <div class="songBox">
         <div class="playBarImg">
             <img src="..\assets\liked_songs.jpg" />
@@ -93,4 +86,4 @@
         <img src="../assets/volume.png" (click)="toggleMuteVolume()" />
         <input class="volumeBar" id="volume1" type="range" min="0" max="1" step="0.01" value="0.5" (input)="setVolume($event)" />
     </div>
-</div>
+</div> -->
