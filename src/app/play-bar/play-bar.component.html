@@ -1,12 +1,19 @@
 <div class="playBar">
-    <!-- *ngIf="playListsAPI.currectPlayingPlaylist" -->
     <div class="songBox">
-        <a>
-            <!-- [routerLink]="['/', 'playlist', playListsAPI.currectPlayingPlaylistInfo.playlist_id]" -->
-            <div class="playBarImg" *ngIf="playListsAPI.currectPlayingPlaylistInfo?.image_url">
-                <img src="{{playListsAPI.currectPlayingPlaylistInfo?.image_url}}" />
-            </div>
-        </a>
+        <div *ngIf="playListsAPI.currectPlayingPlaylistInfo.playlist_id !=null">
+            <a [routerLink]="['/', 'playlist', playListsAPI.currectPlayingPlaylistInfo.playlist_id]">
+                <div class="playBarImg" *ngIf="playListsAPI.currectPlayingPlaylistInfo?.image_url">
+                    <img src="{{playListsAPI.currectPlayingPlaylistInfo?.image_url}}" />
+                </div>
+            </a>
+        </div>
+        <div *ngIf="playListsAPI.LikedSongscurrectPlayingPlaylist?.length > 0">
+            <a routerLink="likedsongs">
+                <div class="playBarImg">
+                    <img src="..\assets\liked_songs.jpg" />
+                </div>
+            </a>
+        </div>
         <div class="songInfo">
             <div class="songName">
                 {{playListsAPI.selectedSong?.name}}

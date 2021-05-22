@@ -101,8 +101,7 @@ export class LikedsongsComponent implements OnInit {
     this.playListsAPI.selectedRow = index;
     this.playListsAPI.playlistSelectedRowTrackerA = index;
     console.log(
-      ' this.playListsAPI.LikedSongscurrectPlayingPlaylis:',
-      this.playListsAPI.LikedSongscurrectPlayingPlaylist
+      this.playListsAPI.currectPlayingPlaylistInfo.playlist_id, this.playListsAPI.currectPlayingPlaylistInfo
     );
   }
 

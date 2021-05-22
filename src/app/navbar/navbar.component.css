@@ -9,7 +9,7 @@
 .navbar {
     position: fixed;
     width: 270px;
-    height: 1080px;
+    height: 100%;
     left: -1px;
     top: 0px;
     background: linear-gradient(0deg, #FFFFFF, #FFFFFF);
@@ -113,4 +113,10 @@ li a.likedsongs span img {
     padding-left: 25px !important;
     /* display: flex;
     align-items: center; */
+}
+
+@media screen and (max-width: 600px) {
+    .navbar {
+        display: none;
+    }
 }
