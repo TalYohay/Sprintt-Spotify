@@ -56,3 +56,9 @@ body {
     outline: none !important;
     box-shadow: none !important;
 }
+
+@media screen and (max-width: 600px) {
+    .ngx-pagination {
+        display: none;
+    }
+}
