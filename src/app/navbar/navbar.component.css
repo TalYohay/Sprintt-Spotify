@@ -26,6 +26,7 @@
     left: 60px;
     top: 60px;
     background: url(src\assets\logo.png);
+    background-repeat: no-repeat;
 }
 
 ul {
@@ -160,5 +161,32 @@ li a.likedsongs span img {
     }
     .navbar.active2 .test {
         transform: translate(-100px, -300px);
+    }
+    .navbar.active2 .test .logo {
+        background-size: 500px;
+        width: 500px;
+        height: 500px;
+        transform: translate(-200px, -300px);
+    }
+    .navbar.active2 .test li {
+        margin-bottom: 300px;
+    }
+    .navbar.active2 .test li a {
+        font-weight: 900;
+        font-size: 70px;
+    }
+    li a.browse span img,
+    li a.home span img,
+    li a.likedsongs span img {
+        display: none;
+    }
+    .active {
+        background: transparent
+    }
+    li a.browse {
+        padding-top: 150px
+    }
+    li a.likedsongs {
+        padding-top: 300px
     }
 }

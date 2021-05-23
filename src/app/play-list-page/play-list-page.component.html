@@ -22,7 +22,7 @@
             <input type="text" placeholder="Filter" [(ngModel)]="searchTerm" [ngModelOptions]="{standalone: true}" />
         </div>
         <div class="tableWrapper" *ngIf="(playListsAPI.playListSongs?.tracks | search:searchTerm).length > 0">
-            <table>
+            <table style="overflow-x:auto;">
 
                 <thead>
                     <tr>
