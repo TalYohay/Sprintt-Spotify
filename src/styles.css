@@ -58,7 +58,9 @@ body {
 }
 
 @media screen and (max-width: 600px) {
-    .ngx-pagination {
-        display: none;
+    .firstPagination,
+    .secondPagination,
+    .thirdPagination {
+        left: 900px
     }
 }
