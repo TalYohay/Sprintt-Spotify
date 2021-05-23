@@ -134,3 +134,15 @@ input[type='range']::-webkit-slider-thumb {
 .selected {
     background: rgba(29, 185, 84, 0.2) !important;
 }
+
+@media screen and (max-width: 600px) {
+    .progressBar {
+        left: 20%;
+    }
+    input[type='range'].bar {
+        width: 600px;
+    }
+    .playBarButtons {
+        left: 40%;
+    }
+}

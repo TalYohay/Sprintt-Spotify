@@ -1,107 +1,112 @@
-.container {
-    position: absolute;
-    /* width: 100vw; */
-    right: 0;
-    /* height: 100vh; */
-    left: 270px;
-    top: 0;
-    /* background: #F1F7F1; */
-    /* Cover shadow */
-    /* box-shadow: 0px 4px 40px rgba(150, 168, 150, 0.3); */
-}
-
-.featuredPlaylists {
-    /* position: absolute; */
-    /* width: 207px; */
-    /* height: 33px; */
-    /* left: 91px; */
-    /* top: 120px; */
-    font-family: Rubik;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 28px;
-    line-height: 33px;
-    color: #191414;
-    white-space: nowrap;
-}
-
-.small-container {
-    width: 1000px;
-    /* margin: auto; */
-    margin-left: 150px;
-    margin-top: 100px;
-}
-
-.playListRow {
-    margin-top: 50px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-
-.playListBox {
-    height: 400px;
-    width: 200px;
-}
-
-.playListImg img {
-    /* position: absolute; */
-    width: 147.71px;
-    height: 147.71px;
-    /* left: -7px;
-    top: -98px; */
-    border-radius: 10px;
-}
-
-.playListName {
-    /* width: 99px; */
-    /* height: 21px; */
-    font-family: Rubik;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 30px;
-    width: 147.71px
-}
-
-.playListDesc {
-    /* position: absolute; */
-    /* width: 5px; */
-    /* height: 34px; */
-    /* left: 413px;
-    top: 441px; */
-    font-family: Rubik;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 17px;
-    color: #6c757d;
-    width: 147.71px
-    /* word-wrap: break-word; */
-}
-
-
-/* .playListDesc p {
-    word-wrap: break-word;
-} */
-
-@media screen and (max-width: 600px) {
     .container {
-        left: 0;
-        min-height: 100vh;
-        width: max-content;
+        position: absolute;
+        /* width: 100vw; */
+        right: 0;
+        /* height: 100vh; */
+        left: 270px;
+        top: 0;
+        /* background: #F1F7F1; */
+        /* Cover shadow */
+        /* box-shadow: 0px 4px 40px rgba(150, 168, 150, 0.3); */
     }
+    
+    .featuredPlaylists {
+        /* position: absolute; */
+        /* width: 207px; */
+        /* height: 33px; */
+        /* left: 91px; */
+        /* top: 120px; */
+        font-family: Rubik;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 28px;
+        line-height: 33px;
+        color: #191414;
+        white-space: nowrap;
+    }
+    
     .small-container {
-        /* width: 100%; */
-        margin-left: 10%;
-        width: 100%
+        width: 1000px;
+        /* margin: auto; */
+        margin-left: 150px;
+        margin-top: 100px;
     }
+    
     .playListRow {
         margin-top: 50px;
         display: flex;
         flex-direction: row;
-        flex-wrap: nowrap;
+        flex-wrap: wrap;
         justify-content: space-between;
     }
-}
+    
+    .playListBox {
+        height: 400px;
+        width: 200px;
+    }
+    
+    .playListImg img {
+        /* position: absolute; */
+        width: 147.71px;
+        height: 147.71px;
+        /* left: -7px;
+    top: -98px; */
+        border-radius: 10px;
+    }
+    
+    .playListName {
+        /* width: 99px; */
+        /* height: 21px; */
+        font-family: Rubik;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 30px;
+        width: 147.71px
+    }
+    
+    .playListDesc {
+        /* position: absolute; */
+        /* width: 5px; */
+        /* height: 34px; */
+        /* left: 413px;
+    top: 441px; */
+        font-family: Rubik;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 17px;
+        color: #6c757d;
+        width: 147.71px
+        /* word-wrap: break-word; */
+    }
+    /* .playListDesc p {
+    word-wrap: break-word;
+} */
+    
+    @media screen and (max-width: 600px) {
+        .container {
+            left: 30px;
+            /* right: 30px; */
+            min-height: 100vh;
+            width: -webkit-max-content;
+            width: max-content;
+            /* margin-left: 50px;*/
+        }
+        .small-container {
+            margin-left: -15px;
+            width: 100%;
+            margin-right: 100px;
+        }
+        .playListRow {
+            margin-top: 50px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+        }
+        .playListImg img {
+            width: 200px !important;
+            height: 200px !important;
+        }
+    }
