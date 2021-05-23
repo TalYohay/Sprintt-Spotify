@@ -92,6 +92,7 @@
             width: -webkit-max-content;
             width: max-content;
             /* margin-left: 50px;*/
+            overflow: scroll;
         }
         .small-container {
             margin-left: -15px;

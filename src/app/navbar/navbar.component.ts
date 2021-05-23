@@ -6,9 +6,9 @@ declare var $: any;
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  currentLocation:any
-  menuItem:any
-  menuLength:any
+  currentLocation: any
+  menuItem: any
+  menuLength: any
 
   constructor() { }
 
@@ -18,6 +18,12 @@ export class NavbarComponent implements OnInit {
 
   }
 
+  toggleActive() {
+    let menutoggle = <HTMLInputElement>document.getElementById('toggle');
+    let navbar = <HTMLInputElement>document.getElementById('navbar');
+    menutoggle.classList.toggle('active2');
+    navbar.classList.toggle('active2');
+  }
 
 
 
