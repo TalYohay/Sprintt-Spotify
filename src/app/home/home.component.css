@@ -109,4 +109,14 @@
             width: 200px !important;
             height: 200px !important;
         }
+        .playListName {
+            font-size: 25px;
+            line-height: 30px;
+            width: 200px;
+        }
+        .playListDesc {
+            width: 200px;
+            font-size: 20px;
+            line-height: 20px;
+        }
     }
