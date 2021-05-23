@@ -91,5 +91,22 @@
     text-shadow: 0px 0px 40px rgba(0, 0, 0, 0.3);
 }
 
-
-/* {{matchedCatergory.image_url}} */
+@media screen and (max-width: 600px) {
+    .container {
+        left: 30px;
+        /* right: 30px; */
+        min-height: 100vh;
+        width: -webkit-max-content;
+        width: max-content;
+        /* margin-left: 50px;*/
+        overflow: scroll;
+    }
+    .small-container {
+        margin-left: -15px;
+        width: 100%;
+        margin-right: 100px;
+    }
+    .tableWrapper {
+        height: auto
+    }
+}

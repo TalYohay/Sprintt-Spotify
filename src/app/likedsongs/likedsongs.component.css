@@ -341,3 +341,23 @@ input[type='range']::-webkit-slider-thumb {
 #imgcontainer img {
     Z-index: 5;
 }
+
+@media screen and (max-width: 600px) {
+    .container {
+        left: 30px;
+        /* right: 30px; */
+        min-height: 100vh;
+        width: -webkit-max-content;
+        width: max-content;
+        /* margin-left: 50px;*/
+        overflow: scroll;
+    }
+    .small-container {
+        margin-left: -15px;
+        width: 100%;
+        margin-right: 100px;
+    }
+    .tableWrapper {
+        height: auto
+    }
+}
